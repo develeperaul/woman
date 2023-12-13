@@ -9,8 +9,180 @@ const routes: RouteRecordRaw[] = [
         path: '',
         name: 'home',
         component: () => import('pages/IndexPage.vue'),
+        meta: {
+          footer: true,
+        },
       },
-      // { path: '', component: () => import('pages/IndexPage.vue') },
+      {
+        path: '/master/:id',
+        name: 'master',
+        component: () => import('pages/Master.vue'),
+        props: true,
+        meta: {},
+      },
+      // { path: 'debug', component: () => import('pages/Debugs/Icons.vue') },
+      // { path: '', component: () => import('pages/IndexPage.vue') }
+    ],
+  },
+  {
+    path: '/',
+    component: () => import('layouts/OtherLayout.vue'),
+    children: [
+      {
+        path: '/about',
+        name: 'about',
+        component: () => import('pages/About.vue'),
+        meta: {
+          title: 'О салоне',
+        },
+      },
+      //Записаться
+      {
+        path: '/to-record',
+        name: 'to-record',
+        component: () => import('pages/ToRecord/Index.vue'),
+        meta: {
+          title: 'Записаться',
+          footer: true,
+        },
+      },
+      {
+        path: '/haircuts',
+        name: 'haircuts',
+        component: () => import('pages/ToRecord/Haircuts.vue'),
+        meta: {
+          title: 'Стрижки',
+        },
+      },
+
+      {
+        path: '/our-works',
+        name: 'our-works',
+        component: () => import('pages/OurWorks.vue'),
+        meta: {
+          title: 'Наши работы',
+        },
+      },
+
+      {
+        path: '/masters',
+        name: 'masters',
+        component: () => import('pages/ToRecord/Masters.vue'),
+        meta: {
+          title: 'Мастера',
+        },
+      },
+
+      {
+        path: '/services',
+        name: 'services',
+        component: () => import('pages/ToRecord/Services.vue'),
+        meta: {
+          title: 'Услуги',
+        },
+      },
+
+      {
+        path: '/set-date/:id',
+        name: 'set-date',
+        component: () => import('pages/ToRecord/Record.vue'),
+        props: true,
+        meta: {
+          title: 'Дата и время',
+        },
+      },
+
+      {
+        path: '/records',
+        name: 'records',
+        component: () => import('pages/Records.vue'),
+        meta: {
+          title: 'Мои записи',
+          footer: true,
+        },
+      },
+      {
+        path: '/others',
+        name: 'others',
+        component: () => import('pages/Other/Index.vue'),
+        meta: {
+          footer: true,
+        },
+      },
+
+      {
+        path: '/bonus',
+        name: 'bonus',
+        component: () => import('pages/Other/Bonus.vue'),
+        meta: {
+          title: 'Мои бонусы',
+        },
+      },
+      {
+        path: '/history-bonus',
+        name: 'history-bonus',
+        component: () => import('pages/Other/HistoryBonus.vue'),
+        meta: {
+          title: 'История начислений',
+        },
+      },
+      {
+        path: '/kosmetika',
+        name: 'kosmetika',
+        component: () => import('pages/Other/Kosmetika.vue'),
+        meta: {
+          title: 'Косметика',
+        },
+      },
+
+      {
+        path: '/kosmetika/:id',
+        name: 'tovar',
+        props: true,
+        component: () => import('pages/Other/Tovar.vue'),
+      },
+
+      {
+        path: '/actions',
+        name: 'actions',
+        component: () => import('pages/Other/Actions.vue'),
+        meta: {
+          title: 'Акции',
+        },
+      },
+
+      {
+        path: '/profile',
+        name: 'profile',
+        component: () => import('pages/Profile.vue'),
+      },
+
+      {
+        path: '/auth',
+        name: 'auth',
+        component: () => import('pages/Reg/Auth.vue'),
+      },
+      {
+        path: '/verify',
+        name: 'verify',
+        component: () => import('pages/Reg/Verify.vue'),
+      },
+
+      {
+        path: '/data',
+        name: 'data',
+        component: () => import('pages/Reg/Data.vue'),
+      },
+
+      // { path: '', component: () => import('pages/IndexPage.vue') }
+    ],
+  },
+
+  {
+    path: '/debug',
+    component: () => import('layouts/DebugLayout.vue'),
+    children: [
+      { path: 'icon', component: () => import('pages/Debugs/Icons.vue') },
       // { path: '', component: () => import('pages/IndexPage.vue') }
     ],
   },

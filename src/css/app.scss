@@ -3,9 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'swiper/css';
+
 @layer base {
   body {
-    font-family: Inter;
+    background: #f2f2f2;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -38,6 +40,13 @@
 }
 
 @layer utilities {
+  .env-t {
+    padding-top: max(20px, env(safe-area-inset-top, 20px));
+  }
+
+  .env-b {
+    padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+  }
   .title {
     font-size: 20px;
     font-weight: 600;
@@ -48,5 +57,20 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 130%;
+  }
+
+  .scroll-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dot {
+    @apply tw-rounded-full;
+    height: 7px;
+    width: 7px;
+    background: #d3d2d2;
+
+    &-active {
+      background: theme('colors.filter');
+    }
   }
 }
