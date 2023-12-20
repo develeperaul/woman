@@ -1,0 +1,13 @@
+{
+  "appId": "ru.vishnya.app",
+  "appName": "Woman",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}

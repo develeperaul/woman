@@ -1,5 +1,5 @@
 <template>
-  <q-page class="tw-container tw-grid">
+  <q-page class="tw-container tw-grid env-b">
     <Form @submit="submit" class="tw-grid tw-content-between">
       <div class="">
         <div class="tw-text-h1 tw-font-bold tw-mb-10">Авторизация</div>
@@ -20,7 +20,11 @@
   </q-page>
 </template>
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 const phone = ref('');
-const submit = () => {};
+const router = useRouter();
+const submit = () => {
+  router.push({ name: 'verify' });
+};
 </script>
 <style lang="scss" scoped></style>

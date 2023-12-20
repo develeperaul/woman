@@ -27,10 +27,13 @@ module.exports = {
         gray: '#686868',
         gray2: '#616161',
         gray3: '#E2E2E2',
+        gray4: '#E6E6E6',
         title: '#0F0F0F',
         title2: '#1D1128',
         link: '#007ABE',
         error: '#EB3B3B',
+        green: '#219653',
+        yellow: '#FFDC23',
       },
       fontSize: {
         t00: ['9px', '120%'],
@@ -57,6 +60,7 @@ module.exports = {
     },
     boxShadow: {
       base: '0px 3px 12px 0px rgba(0, 0, 0, 0.07), 0px -2px 10px 0px rgba(0, 0, 0, 0.05);',
+      btn: '0px 2px 10px 0px rgba(0, 0, 0, 0.20)',
     },
   },
   plugins: [],

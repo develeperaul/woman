@@ -3,6 +3,7 @@
     class="calendar-date-indicator tw-relative tw-text-title-base tw-flex tw-items-center tw-gap-1"
   >
     <q-btn
+      @click="prev"
       round
       flat
       class="tw-absolute tw-left-0 tw-top-1/2 tw-transform -tw-translate-y-1/2"
@@ -14,6 +15,7 @@
     </span>
     <!-- @click="next" -->
     <q-btn
+      @click="next"
       round
       flat
       class="tw-absolute tw-right-0 tw-top-1/2 tw-transform -tw-translate-y-1/2"
@@ -42,9 +44,17 @@ export default defineComponent({
       console.log(newSelectedDate);
       emit('dateSelected', newSelectedDate);
     };
+    const prev = () => {
+      if (dayjs().isBefore(dayjs(props.selectDate), 'month')) {
+        let newSelectedDate = dayjs(props.selectDate).subtract(1, 'month');
+
+        emit('dateSelected', newSelectedDate);
+      }
+    };
     return {
       selectedMonth: computed(() => props.selectDate.format('MMMM')),
       next,
+      prev,
     };
   },
 });

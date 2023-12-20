@@ -27,7 +27,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  (event: 'update:modelValue', val: Option): void;
+  (event: 'update:modelValue', val: string | number): void;
 }>();
 </script>
 <style lang="scss" scoped></style>

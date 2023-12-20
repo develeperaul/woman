@@ -1,0 +1,15 @@
+{
+  "name": "woman",
+  "version": "0.0.1",
+  "description": "Cеть студий красоты",
+  "author": "Ralfik <developeraul@gmail.com>",
+  "private": true,
+  "dependencies": {
+    "@capacitor/android": "^5.0.0",
+    "@capacitor/app": "^5.0.0",
+    "@capacitor/cli": "^5.0.0",
+    "@capacitor/core": "^5.0.0",
+    "@capacitor/ios": "^5.0.0",
+    "@capacitor/splash-screen": "^5.0.6"
+  }
+}

@@ -5,7 +5,10 @@
         v-for="(master, index) in masters"
         class="card tw-flex tw-justify-between tw-items-center tw-gap-2.5"
       >
-        <router-link :to="{ name: 'services' }" class="tw-flex tw-gap-2.5">
+        <router-link
+          :to="{ name: 'services', params: { id: master.id } }"
+          class="tw-flex tw-gap-2.5"
+        >
           <q-avatar size="54px">
             <img :src="master.url" alt="" />
           </q-avatar>
@@ -14,11 +17,11 @@
               {{ master.name }}
             </div>
             <div class="tw-text-[#8E8C8C] tw-text-t3 tw-mb-2.5">
-              {{ master.job }}
+              {{ master.position }}
             </div>
             <div class="tw-flex tw-gap-5 tw-text-t1">
-              <div>1 000 ₽</div>
-              <div class="tw-text-[#8E8C8C]">1 ч</div>
+              <div>{{ master.price }}</div>
+              <div class="tw-text-[#8E8C8C]">{{ master.time }}</div>
             </div>
           </div>
         </router-link>
@@ -28,25 +31,14 @@
   </q-page>
 </template>
 <script setup lang="ts">
-const masters = [
-  {
-    id: 1,
-    name: 'Ольга Кононова',
-    job: 'Парикмахер-универсал',
-    url: '/test.jpeg',
-  },
-  {
-    id: 1,
-    name: 'Ольга Кононова',
-    job: 'Парикмахер-универсал',
-    url: '/test.jpeg',
-  },
-  {
-    id: 1,
-    name: 'Ольга Кононова',
-    job: 'Парикмахер-универсал',
-    url: '/test.jpeg',
-  },
-];
+import { storeToRefs } from 'pinia';
+const props = defineProps<{
+  query: {
+    services_id: string | undefined;
+    sub_services: string | undefined;
+  };
+}>();
+const storeSerives = servisesStore();
+const { masters } = storeToRefs(storeSerives);
 </script>
 <style lang="scss" scoped></style>

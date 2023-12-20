@@ -11,6 +11,7 @@
         :type="type"
         class="input"
         :placeholder="placeholder"
+        :disabled="disabled"
       />
       <svg
         v-if="meta.dirty && meta.valid"
@@ -44,9 +45,11 @@ const props = withDefaults(
     rules?: string;
     label?: string;
     placeholder?: string;
+    disabled?: boolean;
   }>(),
   {
     type: 'text',
+    disabled: false,
   }
 );
 

@@ -5,26 +5,13 @@
       <tab-content :name="1">
         <div v-if="true" class="tw-grid tw-gap-3">
           <Record
-            @cancel="cancel(1)"
-            name="Стрижка женская"
-            date="14 октября (вт) 10:00"
-            master="Ксения Попова"
-            address="Проспект Октября, 105"
-            past
-          />
-          <Record
-            @cancel="cancel(1)"
-            name="Стрижка женская"
-            date="14 октября (вт) 10:00"
-            master="Ксения Попова"
-            address="Проспект Октября, 105"
-            past
-          />
-          <Record
-            @cancel="cancel(2)"
-            name="Стрижка женская"
-            date="14 октября (вт) 10:00"
-            master="Ксения Попова"
+            v-for="(record, index) in records"
+            @cancel="cancel(index)"
+            :name="record.service.name"
+            :date="`${dayjs(record.date.day)
+              .locale('ru')
+              .format('DD MMMM (dd)')} ${record.date.time}`"
+            :master="record.master.name"
             address="Проспект Октября, 105"
             past
           />
@@ -49,10 +36,17 @@
         </div>
       </tab-content>
     </tab-body>
+    <Cancel v-model="open" />
   </q-page>
 </template>
 <script setup lang="ts">
 import Record from 'src/components/Card/Record.vue';
+import Cancel from 'src/components/Modal/Cancel.vue';
+import { storeToRefs } from 'pinia';
+import dayjs from 'dayjs';
+import 'src/utils/locale-ru';
+const storeRecords = recordsStore();
+const { records } = storeToRefs(storeRecords);
 const tab = ref(1);
 const tabs = [
   {
@@ -65,8 +59,11 @@ const tabs = [
   },
 ];
 
+const open = ref(false);
+
 const cancel = (val: number) => {
   console.log(val);
+  open.value = true;
 };
 </script>
 <style lang="scss" scoped></style>

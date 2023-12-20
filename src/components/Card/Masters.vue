@@ -4,7 +4,7 @@
     <div class="tw-grid tw-gap-3">
       <div class="tw-flex tw-gap-4 tw-overflow-auto scroll-none -tw-mx-5.5">
         <button
-          v-for="(n, index) in tabs"
+          v-for="(n, index) in servises"
           :key="index"
           class="tab"
           :class="[
@@ -12,18 +12,19 @@
             { 'tw-mr-5.5': index === tabs.length - 1 },
             { active: n.id === tab },
           ]"
-          @click="selectTab(n.id)"
+          @click="tab = n.id"
         >
           {{ n.name }}
         </button>
       </div>
 
       <div
-        v-if="masters.length > 0"
+        v-if="filterMasters.length > 0"
         class="tw-flex tw-gap-4 tw-overflow-auto scroll-none -tw-mx-5.5"
       >
         <div
-          v-for="(master, index) in masters"
+          v-for="(master, index) in filterMasters"
+          @click="$router.push({ name: 'master', params: { id: master.id } })"
           class="card tw-flex tw-items-center tw-gap-2.5 tw-shrink-0"
           :class="[
             { 'tw-ml-5.5': index === 0 },
@@ -39,7 +40,7 @@
               {{ master.name }}
             </div>
             <div class="tw-text-[#8E8C8C] tw-text-t3">
-              {{ master.job }}
+              {{ master.position }}
             </div>
           </div>
         </div>
@@ -50,6 +51,11 @@
   </div>
 </template>
 <script setup lang="ts">
+import { Master, Servise } from 'src/models';
+const props = defineProps<{
+  masters: Master[];
+  servises: Servise[];
+}>();
 const tab = ref<number>(1);
 const tabs = [
   {
@@ -70,29 +76,11 @@ const tabs = [
   },
 ];
 
-const selectTab = (id: number) => {
-  tab.value = id;
-  masters.value = [
-    {
-      id: 1,
-      name: 'Ольга Кононова',
-      job: 'Парикмахер-универсал',
-      url: '/test.jpeg',
-    },
-    {
-      id: 1,
-      name: 'Ольга Кононова',
-      job: 'Парикмахер-универсал',
-      url: '/test.jpeg',
-    },
-    {
-      id: 1,
-      name: 'Ольга Кононова',
-      job: 'Парикмахер-универсал',
-      url: '/test.jpeg',
-    },
-  ];
-};
+const filterMasters = computed(() => {
+  return props.masters.filter((item) => {
+    return item.servicesList.find((service) => service.id === tab.value);
+  });
+});
 
 const masters = ref<{ id: number; name: string; job: string; url: string }[]>(
   []

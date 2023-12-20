@@ -1,14 +1,18 @@
 <template>
-  <div class="header tw-flex tw-justify-center tw-items-center">
+  <div class="header env-t">
     <div
-      class="tw-absolute tw-left-1 tw-top-1/2 tw-transform -tw-translate-y-1/2"
+      class="tw-relative tw-w-full tw-flex tw-justify-center tw-items-center"
     >
-      <q-btn round flat @click="back">
-        <base-icon name="back" class="tw-text-white tw-w-10 tw-h-10" />
-      </q-btn>
-    </div>
-    <div class="tw-text-h2 tw-text-white tw-font-semibold">
-      {{ $route.meta.title }}
+      <div
+        class="tw-absolute tw-left-2 tw-top-1/2 tw-transform -tw-translate-y-1/2"
+      >
+        <q-btn round flat @click="back">
+          <base-icon name="back" class="tw-text-white tw-w-10 tw-h-10" />
+        </q-btn>
+      </div>
+      <div class="tw-text-h2 tw-text-white tw-font-semibold">
+        {{ $route.meta.title }}
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +28,7 @@ const back = () => {
 </script>
 <style lang="scss" scoped>
 .header {
-  height: 67px;
+  padding-bottom: 20px;
   background: linear-gradient(
     180deg,
     theme('colors.primaryto2') 0%,

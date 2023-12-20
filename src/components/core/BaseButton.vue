@@ -4,7 +4,7 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    theme?: 'bg' | 'gradient';
+    theme?: 'bg' | 'gradient' | 'border';
   }>(),
   {
     theme: 'bg',
@@ -23,6 +23,9 @@ const props = withDefaults(
       theme('colors.primaryto') 0%,
       theme('colors.primary') 100%
     );
+  }
+  &_border {
+    @apply tw-bg-transparent tw-text-title tw-border tw-border-primary;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <q-page class="tw-container">
+  <q-page class="tw-container env-b">
     <Form @submit="submit" class="tw-grid tw-content-between">
       <div class="tw-mb-[70px]">
         <div class="tw-text-h1 tw-font-bold tw-mb-10">Код подтверждения</div>
@@ -21,6 +21,10 @@
   </q-page>
 </template>
 <script setup lang="ts">
-const submit = () => {};
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const submit = () => {
+  router.push({ name: 'data' });
+};
 </script>
 <style lang="scss" scoped></style>

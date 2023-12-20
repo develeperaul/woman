@@ -1,7 +1,10 @@
 <template>
   <q-page class="tw-container tw-grid tw-content-between">
     <div>
-      <div class="tw-flex tw-justify-between tw-items-center tw-mb-7">
+      <div
+        class="tw-flex tw-justify-between tw-items-center tw-mb-7"
+        @click="$router.push({ name: 'profile' })"
+      >
         <div
           class="tw-text-h2 tw-font-semibold tw-flex tw-gap-2 tw-items-center"
         >

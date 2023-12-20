@@ -5,12 +5,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed } from 'vue';
 export default defineComponent({
-  name: "week-days",
+  name: 'week-days',
   setup(props) {
     return {
-      days: computed(() => ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]),
+      days: computed(() => ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']),
     };
   },
 });
@@ -19,10 +19,11 @@ export default defineComponent({
 <style lang="scss" scoped>
 .day-of-week {
   display: grid;
-  grid-template-columns: repeat(7, 36px);
+  grid-template-columns: repeat(7, 27px);
+  justify-content: space-between;
   .item {
-    width: 36px;
-    height: 36px;
+    width: 27px;
+    height: 27px;
     display: flex;
     align-items: center;
     justify-content: center;

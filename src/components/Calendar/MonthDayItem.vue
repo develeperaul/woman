@@ -3,12 +3,19 @@
     class="calendar-day"
     :class="{
       'calendar-day--not-current': !day.isCurrentMonth,
+      'calendar-day--reserve': day.past || day.isReserve,
       'calendar-day--today': isToday,
     }"
     ref="dayEl"
   >
-    <div class="item" @click="openEventList" :class="{ active: popupEvents }">
-      {{ label }}
+    <div
+      class="item"
+      @click="$emit('chooseDay', day)"
+      :class="{ active: isActive }"
+    >
+      <span>
+        {{ label }}
+      </span>
     </div>
 
     <EventType
@@ -60,7 +67,10 @@ export default defineComponent({
       type: Object,
       required: true,
     },
-
+    isActive: {
+      type: Boolean,
+      default: false,
+    },
     isCurrentMonth: {
       type: Boolean,
       default: false,
@@ -75,6 +85,7 @@ export default defineComponent({
       default: null,
     },
   },
+  emits: ['chooseDay'],
   setup(props) {
     const dayEl = ref<HTMLElement>();
     const popupEl = ref<HTMLElement>();
@@ -140,19 +151,29 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
+  &--reserve {
+    @apply tw-text-[#BDBDBD];
+  }
   .item {
     @apply tw-rounded-full;
-    width: 36px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: normal;
+    display: grid;
+    align-content: center;
+    width: 27px;
     z-index: 1;
-    height: 36px;
+    height: 27px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background 1.4s cubic-bezier(0.19, 1, 0.22, 1);
-    cursor: pointer;
-    &:hover,
-    &.active {
-      @apply tw-bg-red-600;
+  }
+  &:not(.calendar-day--reserve) {
+    .item:hover,
+    .item.active {
+      @apply tw-bg-green tw-text-white;
+      cursor: pointer;
     }
   }
   .event {

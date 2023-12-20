@@ -3,31 +3,13 @@ import { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('layouts/OtherLayout.vue'),
     children: [
       {
         path: '',
-        name: 'home',
-        component: () => import('pages/IndexPage.vue'),
-        meta: {
-          footer: true,
-        },
+        name: 'first',
+        component: () => import('pages/First.vue'),
       },
-      {
-        path: '/master/:id',
-        name: 'master',
-        component: () => import('pages/Master.vue'),
-        props: true,
-        meta: {},
-      },
-      // { path: 'debug', component: () => import('pages/Debugs/Icons.vue') },
-      // { path: '', component: () => import('pages/IndexPage.vue') }
-    ],
-  },
-  {
-    path: '/',
-    component: () => import('layouts/OtherLayout.vue'),
-    children: [
       {
         path: '/about',
         name: 'about',
@@ -66,24 +48,32 @@ const routes: RouteRecordRaw[] = [
 
       {
         path: '/masters',
+        props: (route) => ({
+          query: {
+            services_id: route.query.services_id,
+            sub_services: route.query.sub_services,
+          },
+        }),
         name: 'masters',
         component: () => import('pages/ToRecord/Masters.vue'),
+
         meta: {
           title: 'Мастера',
         },
       },
 
       {
-        path: '/services',
+        path: '/services/:id',
         name: 'services',
         component: () => import('pages/ToRecord/Services.vue'),
+        props: true,
         meta: {
           title: 'Услуги',
         },
       },
 
       {
-        path: '/set-date/:id',
+        path: '/set-date/:master_id-:services_id-:sub_services_id',
         name: 'set-date',
         component: () => import('pages/ToRecord/Record.vue'),
         props: true,
@@ -152,6 +142,12 @@ const routes: RouteRecordRaw[] = [
       },
 
       {
+        path: '/actions/:id',
+        name: 'action',
+        component: () => import('pages/Other/ActionView.vue'),
+      },
+
+      {
         path: '/profile',
         name: 'profile',
         component: () => import('pages/Profile.vue'),
@@ -174,6 +170,36 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/Reg/Data.vue'),
       },
 
+      {
+        path: '/test',
+        name: 'test',
+        component: () => import('pages/Test.vue'),
+      },
+
+      // { path: '', component: () => import('pages/IndexPage.vue') }
+    ],
+  },
+
+  {
+    path: '/',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '/home',
+        name: 'home',
+        component: () => import('pages/IndexPage.vue'),
+        meta: {
+          footer: true,
+        },
+      },
+      {
+        path: '/master/:id',
+        name: 'master',
+        component: () => import('pages/Master.vue'),
+        props: true,
+        meta: {},
+      },
+      // { path: 'debug', component: () => import('pages/Debugs/Icons.vue') },
       // { path: '', component: () => import('pages/IndexPage.vue') }
     ],
   },

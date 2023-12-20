@@ -52,13 +52,20 @@
       <div class="tw-text-t1">В наличии</div>
     </div>
     <div class="tw-container">
-      <base-button theme="gradient"> Заказать </base-button>
+      <base-button theme="gradient" @click="open = true">
+        Заказать
+      </base-button>
     </div>
+
+    <Basket v-model="open" />
   </q-page>
 </template>
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination } from 'swiper/modules';
+import Basket from 'src/components/Modal/Basket.vue';
+
+const open = ref(false);
 </script>
 <style lang="scss">
 .swiper-paginate {

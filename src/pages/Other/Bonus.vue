@@ -15,7 +15,11 @@
           <div class="tw-text-t1 tw-font-semibold tw-mb-1.5">Номер карты</div>
           <div>11050202</div>
         </div>
-        <base-icon name="info" class="tw-w-5 tw-h-5 tw-text-white" />
+        <base-icon
+          @click="open = true"
+          name="info"
+          class="tw-w-5 tw-h-5 tw-text-white"
+        />
       </div>
     </div>
 
@@ -32,7 +36,12 @@
         История начислений
       </base-button>
     </div>
+    <BonusInfo v-model="open" />
   </q-page>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import BonusInfo from 'src/components/Modal/BonusInfo.vue';
+
+const open = ref(false);
+</script>
 <style lang="scss" scoped></style>
