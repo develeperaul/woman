@@ -3,10 +3,10 @@
     <div class="tw-inline-flex tw-gap-4 tw-whitespace-nowrap tw-overflow-auto">
       <tab-item
         v-for="item in options"
-        @click="() => $emit('update:modelValue', item.name)"
-        :class="{ active: item.name === modelValue }"
+        @click="() => $emit('update:modelValue', item.id)"
+        :class="{ active: item.id === modelValue }"
       >
-        {{ item.label }}
+        {{ item.name }}
       </tab-item>
     </div>
   </div>
@@ -18,8 +18,8 @@ export default defineComponent({
 </script>
 <script setup lang="ts">
 interface Option {
-  name: string | number;
-  label: string;
+  id: string | number;
+  name: string;
 }
 const props = defineProps<{
   modelValue: string | number;

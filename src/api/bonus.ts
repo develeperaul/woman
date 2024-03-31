@@ -7,9 +7,11 @@ export const bonuses = (): Promise<DataObj<BonusT>> =>
   api.mainKy('my-bonuses').json();
 
 // Показывает правила использования бонусной карты
-export const bonusRule = (): Promise<DataObj<BonusRuleT>> =>
+export const bonusRules = (): Promise<DataObj<BonusRuleT>> =>
   api.mainKy('bonus-card-rule').json();
 
 // История зачисления бонусов
-export const bonusHistory = (): Promise<DataObj<BonusHistoryItemT[]>> =>
-  api.mainKy('bonus-card-history').json();
+export const bonusHistory = (
+  type: 'accrual' | 'write_off' | 'all'
+): Promise<DataObj<BonusHistoryItemT[]>> =>
+  api.mainKy(`bonus-card-history?type=${type}`).json();

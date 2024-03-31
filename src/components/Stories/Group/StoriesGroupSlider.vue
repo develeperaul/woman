@@ -6,23 +6,23 @@
   >
     <swiper-slide
       class="stories-group-slider__item"
-      v-for="(n, i) in mainStory.storiesGroup"
+      v-for="(n, i) in mainStory"
       :key="i"
     >
       <div class="stories-group-slider__item-body tw-container tw-pt-10">
         <div>
           <div class="tw-text-h2 tw-font-semibold tw-mb-5">
-            Открытие нового салона
+            {{ n.title }}
           </div>
           <div class="tw-text-t1">
-            Мы открываем второй салон! В честь нашего открытия Вас ждут подарки
-            и мастер-класс по макияжу!
+            {{ n.description }}
           </div>
         </div>
-        <img
-          src="/test.jpeg "
+        <q-img
+          :src="n.image.url"
           alt=""
-          class="tw-rounded-2xl tw-h-[235px] tw-w-full tw-object-cover"
+          class="tw-rounded-2xl tw-h-[235px] tw-w-full"
+          fit
         />
       </div>
     </swiper-slide>
@@ -76,7 +76,6 @@ const swiperOptions = ref({
       width: 100%;
       height: 100%;
       align-items: center;
-      justify-content: center;
 
       font-size: 25px;
     }

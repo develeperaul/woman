@@ -1,9 +1,9 @@
 import { DataObj } from 'src/models/api';
 import { api } from './index';
-import { CosemticT, ProductT } from 'src/models/api/cosmetic';
+import { CosemticCategoryT, ProductT } from 'src/models/api/cosmetic';
 
 // Список категорий товаров
-export const cosmetics = (): Promise<DataObj<CosemticT[]>> =>
+export const cosmeticsCategories = (): Promise<DataObj<CosemticCategoryT[]>> =>
   api.mainKy('cosmetics/categories').json();
 
 // Список товаров
@@ -24,5 +24,5 @@ export const cosmeticOrder = (obj: {
   body.append('name', obj.name);
   body.append('phone', obj.phone);
   body.append('product_id', String(obj.product_id));
-  api.mainKy.post(`cosmetics/order`, { body });
+  return api.mainKy.post(`cosmetics/order`, { body });
 };

@@ -1,3 +1,9 @@
+export type DataVal<T> = {
+  loading: boolean;
+  data: T;
+  err?: string;
+};
+
 export type Record = {
   service: {
     name: string;

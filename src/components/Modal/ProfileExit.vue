@@ -6,11 +6,7 @@
         выйти из аккаунта?
       </div>
       <div class="tw-flex tw-gap-5">
-        <base-button
-          theme="border"
-          @click="$router.push({ name: 'auth' })"
-          class="!tw-w-[98px]"
-        >
+        <base-button theme="border" @click="checkout" class="!tw-w-[98px]">
           Да
         </base-button>
         <base-button theme="gradient" @click="checkout" class="!tw-w-[98px]">
@@ -29,7 +25,9 @@ const emit = defineEmits<{
 }>();
 const open = ref(false);
 
-const checkout = () => {};
+const checkout = async () => {
+  await profileStore().exitUser();
+};
 onMounted(() => (open.value = props.modelValue));
 watch(
   () => props.modelValue,

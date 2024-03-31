@@ -1,4 +1,4 @@
-export type CosemticT = {
+export type CosemticCategoryT = {
   id: number;
   name: string;
 };
@@ -8,10 +8,11 @@ export type ProductT = {
   name: string;
   amount: string;
   price: string;
-  images: {
+  image: {
     id: number;
     path: string;
     width: string;
     height: string;
+    url: string;
   }[];
 };

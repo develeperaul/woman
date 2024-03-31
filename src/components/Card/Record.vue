@@ -18,7 +18,7 @@
       <div class="tw-text-gray2">Адрес</div>
       <div>{{ address }}</div>
     </div>
-    <button class="tw-text-link" @click="$emit('cancel')">
+    <button v-if="prev" class="tw-text-link" @click="$emit('cancel')">
       Отменить запись
     </button>
   </div>
@@ -33,9 +33,11 @@ const props = withDefaults(
     master: string;
     address: string;
     past?: boolean;
+    prev?: boolean;
   }>(),
   {
     past: false,
+    prev: false,
   }
 );
 const emit = defineEmits<{

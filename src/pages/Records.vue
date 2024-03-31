@@ -1,19 +1,21 @@
 <template>
   <q-page class="tw-container">
     <tab-head v-model="tab" :options="tabs" class="tw-mb-6" />
+    {{}}
     <tab-body v-model="tab">
-      <tab-content :name="1">
-        <div v-if="true" class="tw-grid tw-gap-3">
+      <tab-content name="upcoming">
+        <div v-if="recordList.data.length > 0" class="tw-grid tw-gap-3">
           <Record
-            v-for="(record, index) in records"
-            @cancel="cancel(index)"
-            :name="record.service.name"
-            :date="`${dayjs(record.date.day)
+            v-for="(record, index) in recordList.data"
+            @cancel="cancel(record.id)"
+            :name="record.service"
+            :date="`${dayjs(record.date)
               .locale('ru')
-              .format('DD MMMM (dd)')} ${record.date.time}`"
-            :master="record.master.name"
-            address="Проспект Октября, 105"
+              .format('DD MMMM (dd) h:m')} `"
+            :master="record.personnel"
+            :address="record.salon"
             past
+            prev
           />
         </div>
         <div v-else class="tw-flex tw-justify-center tw-mt-20">
@@ -21,14 +23,17 @@
         </div>
       </tab-content>
 
-      <tab-content :name="2">
-        <div v-if="false" class="tw-grid tw-gap-3">
+      <tab-content name="previous">
+        <div v-if="recordListPrev.data.length > 0" class="tw-grid tw-gap-3">
           <Record
-            @cancel="cancel(3)"
-            name="Маникюр"
-            date="30 октября (вт) 12:00"
-            master="Оксана Егорова"
-            address="Проспект Октября, 105"
+            v-for="(record, index) in recordListPrev.data"
+            :name="record.service"
+            :date="`${dayjs(record.date)
+              .locale('ru')
+              .format('DD MMMM (dd) h:m')} `"
+            :master="record.personnel"
+            :address="record.salon"
+            past
           />
         </div>
         <div v-else class="tw-flex tw-justify-center tw-mt-20">
@@ -36,7 +41,7 @@
         </div>
       </tab-content>
     </tab-body>
-    <Cancel v-model="open" />
+    <Cancel v-model="deleteRectordId" />
   </q-page>
 </template>
 <script setup lang="ts">
@@ -46,24 +51,27 @@ import { storeToRefs } from 'pinia';
 import dayjs from 'dayjs';
 import 'src/utils/locale-ru';
 const storeRecords = recordsStore();
-const { records } = storeToRefs(storeRecords);
-const tab = ref(1);
+const { records, recordList, recordListPrev } = storeToRefs(storeRecords);
+const tab = ref('upcoming');
 const tabs = [
   {
-    name: 1,
-    label: 'Предстоящие',
+    id: 'upcoming',
+    name: 'Предстоящие',
   },
   {
-    name: 2,
-    label: 'Прошлые',
+    id: 'previous',
+    name: 'Прошлые',
   },
 ];
 
-const open = ref(false);
+const deleteRectordId = ref<number | null>(null);
 
 const cancel = (val: number) => {
-  console.log(val);
-  open.value = true;
+  deleteRectordId.value = val;
 };
+onMounted(async () => {
+  await storeRecords.getRecords('upcoming');
+  await storeRecords.getRecords('previous');
+});
 </script>
 <style lang="scss" scoped></style>

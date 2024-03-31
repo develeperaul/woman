@@ -11,11 +11,13 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/First.vue'),
       },
       {
-        path: '/about',
+        path: '/about/:id',
         name: 'about',
+        props: true,
         component: () => import('pages/About.vue'),
         meta: {
           title: 'О салоне',
+          auth: true,
         },
       },
       //Записаться
@@ -26,6 +28,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: 'Записаться',
           footer: true,
+          auth: true,
         },
       },
       {
@@ -34,6 +37,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/ToRecord/Haircuts.vue'),
         meta: {
           title: 'Стрижки',
+          auth: true,
         },
       },
 
@@ -43,22 +47,19 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/OurWorks.vue'),
         meta: {
           title: 'Наши работы',
+          auth: true,
         },
       },
 
       {
         path: '/masters',
-        props: (route) => ({
-          query: {
-            services_id: route.query.services_id,
-            sub_services: route.query.sub_services,
-          },
-        }),
+
         name: 'masters',
         component: () => import('pages/ToRecord/Masters.vue'),
 
         meta: {
           title: 'Мастера',
+          auth: true,
         },
       },
 
@@ -69,16 +70,17 @@ const routes: RouteRecordRaw[] = [
         props: true,
         meta: {
           title: 'Услуги',
+          auth: true,
         },
       },
 
       {
-        path: '/set-date/:master_id-:services_id-:sub_services_id',
+        path: '/set-date/',
         name: 'set-date',
         component: () => import('pages/ToRecord/Record.vue'),
-        props: true,
         meta: {
           title: 'Дата и время',
+          auth: true,
         },
       },
 
@@ -89,6 +91,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: 'Мои записи',
           footer: true,
+          auth: true,
         },
       },
       {
@@ -97,6 +100,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/Other/Index.vue'),
         meta: {
           footer: true,
+          auth: true,
         },
       },
 
@@ -106,6 +110,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/Other/Bonus.vue'),
         meta: {
           title: 'Мои бонусы',
+          auth: true,
         },
       },
       {
@@ -114,6 +119,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/Other/HistoryBonus.vue'),
         meta: {
           title: 'История начислений',
+          auth: true,
         },
       },
       {
@@ -122,6 +128,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/Other/Kosmetika.vue'),
         meta: {
           title: 'Косметика',
+          auth: true,
         },
       },
 
@@ -130,6 +137,9 @@ const routes: RouteRecordRaw[] = [
         name: 'tovar',
         props: true,
         component: () => import('pages/Other/Tovar.vue'),
+        meta: {
+          auth: true,
+        },
       },
 
       {
@@ -138,19 +148,28 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/Other/Actions.vue'),
         meta: {
           title: 'Акции',
+          auth: true,
         },
       },
 
       {
         path: '/actions/:id',
+        props: true,
+
         name: 'action',
         component: () => import('pages/Other/ActionView.vue'),
+        meta: {
+          auth: true,
+        },
       },
 
       {
         path: '/profile',
         name: 'profile',
         component: () => import('pages/Profile.vue'),
+        meta: {
+          auth: true,
+        },
       },
 
       {
@@ -190,6 +209,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/IndexPage.vue'),
         meta: {
           footer: true,
+          auth: true,
         },
       },
       {
@@ -197,7 +217,9 @@ const routes: RouteRecordRaw[] = [
         name: 'master',
         component: () => import('pages/Master.vue'),
         props: true,
-        meta: {},
+        meta: {
+          auth: true,
+        },
       },
       // { path: 'debug', component: () => import('pages/Debugs/Icons.vue') },
       // { path: '', component: () => import('pages/IndexPage.vue') }

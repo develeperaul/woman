@@ -4,6 +4,7 @@ import {
   AvailableDayT,
   AvailableTimeT,
   CategotyT,
+  ServiceT,
   MasterServiceT,
   MasterT,
   RecordServiceT,
@@ -17,9 +18,11 @@ export const mastersSalon = (salon_id: number): Promise<DataObj<MasterT[]>> =>
     .json();
 
 // Показывает список услуг выбранного мастера
-export const mastersService = (salon_id: number): Promise<DataObj<MasterT[]>> =>
+export const servicesMater = (
+  personnel_id: number
+): Promise<DataObj<ServiceT[]>> =>
   api
-    .mainKy(`recording-services/through-master/personnel?salon_id=${salon_id}`)
+    .mainKy(`recording-services/through-master/services/${personnel_id}`)
     .json();
 
 // Показывает категории услуг с выбранным салоном
@@ -30,7 +33,7 @@ export const masterServices = (
     .mainKy(`recording-service/through-service/personnel/${personnel_id}`)
     .json();
 
-// Показывает услуги с выбранной категорией
+// Показывает категории услуг с выбранным салоном
 export const categories = (salon_id: number): Promise<DataObj<CategotyT[]>> =>
   api
     .mainKy(
@@ -38,12 +41,22 @@ export const categories = (salon_id: number): Promise<DataObj<CategotyT[]>> =>
     )
     .json();
 
-// Показывает мастеров с выбранной услугой
-export const services = (category_id: number) =>
+// Показывает услуги с выбранной категорией
+export const servicesCategory = (
+  salon_id: number,
+  category_id: number
+): Promise<DataObj<ServiceT[]>> =>
   api
     .mainKy(
-      `recording-service/through-service/service/{category_id}?category_id=${category_id}`
+      `recording-services/through-service/service/${category_id}?salon_id=${salon_id}`
     )
+    .json();
+// Показывает мастеров с выбранной услугой
+export const mastersService = (
+  service_id: number
+): Promise<DataObj<MasterT[]>> =>
+  api
+    .mainKy(`recording-services/through-service/personnel/${service_id}`)
     .json();
 
 // Показывает список свободных дней с выбранным мастером
@@ -54,18 +67,19 @@ export const availableDays = (obj: {
 }): Promise<DataObj<AvailableDayT>> =>
   api
     .mainKy(
-      `recording-service/available-days?personnel_id=${obj.personnel_id}&year=${obj.year}&month=${obj.month}`
+      `recording-services/available-days?personnel_id=${obj.personnel_id}&year=${obj.year}&month=${obj.month}`
     )
     .json();
 
 // Показывает список свободных слотов с выбранным мастером,с выбранной услугой
 export const availableTimes = (obj: {
-  category_id: number;
   service_id: number;
+  personnel_id: number;
+  date: string;
 }): Promise<DataObj<AvailableTimeT>> =>
   api
     .mainKy(
-      `recording-service/available-times?category_id=${obj.category_id}&service_id=${obj.service_id}`
+      `recording-services/available-times?service_id=${obj.service_id}&personnel_id=${obj.personnel_id}&date=${obj.date}`
     )
     .json();
 
@@ -82,16 +96,15 @@ export const recordService = (obj: {
   body.append('work_slot_id', String(obj.work_slot_id));
   body.append('service_id', String(obj.service_id));
 
-  return api.mainKy.post('recording-service', { body }).json();
+  return api.mainKy.post('recording-services', { body }).json();
 };
 
 // Показывает список записей пользователя
-export const records = (
+export const recordsUser = (
   filter: 'upcoming' | 'previous'
 ): Promise<DataObj<RecordingT[]>> =>
-  api.mainKy(`my-service-etries?type=${filter}`).json();
-
+  api.mainKy(`my-service-entries?type=${filter}`).json();
 // Отменить запись пользователя
 
 export const recordDelete = (journal_record_id: number) =>
-  api.mainKy.delete(`my-service-etries/${journal_record_id}`);
+  api.mainKy.delete(`my-service-entries/${journal_record_id}`);

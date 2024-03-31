@@ -1,4 +1,4 @@
-export type SalonsT = {
+export type SalonT = {
   id: number;
   city: string;
   street: string;
@@ -13,12 +13,40 @@ export type SalonsT = {
   }[];
 };
 
+export type SalonItemT = {
+  id: number;
+  city: string;
+  street: string;
+  number_house: string;
+  description: string;
+  phone: string;
+  work_from: string;
+  work_to: string;
+  social_networks: {
+    type: string;
+    url: string;
+  }[];
+  images: {
+    id: number;
+    path: string;
+    width: string;
+    height: string;
+    url: string;
+  }[];
+};
+
 export type StoriesT = {
-  id: string;
+  id: number;
   title: string;
   published_at: string;
   unpublished_at: string;
-  image: { id: number; path: string; width: string; height: string };
+  image: {
+    id: number;
+    path: string;
+    width: string;
+    height: string;
+    url: string;
+  };
 };
 
 export type StoryT = {
@@ -35,6 +63,9 @@ export type StoryT = {
   };
 };
 
+export type StoryGroupT = {
+  [key: string]: StoryT[];
+};
 export type ServiseCategoriesT = {
   id: number;
   name: string;
@@ -43,20 +74,22 @@ export type ServiseCategoriesT = {
     path: string;
     width: string;
     height: string;
+    url: string;
   };
 };
 
-export type PersonnelCategoryT = {
+export type MasterT = {
   id: number;
   name: string;
-  description: string;
+  description: string | null;
   profession: string;
   profile_image: {
     id: number;
     path: string;
     width: string;
     height: string;
-  };
+    url: string;
+  } | null;
 };
 
 export type LastJournalRecordT = {
@@ -77,11 +110,16 @@ export type LastJournalRecordT = {
       path: string;
       width: string;
       height: string;
+      url: string;
     };
   };
-  dates: [
-    {
-      date: string;
-    }
-  ];
+  dates: string[];
+};
+
+export type UpcomingEntryT = {
+  id: number;
+  service: string;
+  date: string;
+  personnel: string;
+  salon: string;
 };

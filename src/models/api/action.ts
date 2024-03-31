@@ -9,5 +9,6 @@ export type ActionItemT = {
     path: string;
     width: string;
     height: string;
+    url: string;
   };
 };

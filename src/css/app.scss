@@ -32,8 +32,8 @@
       height: 170px;
       background: linear-gradient(
         180deg,
-        #c131c1 0%,
-        rgba(156, 49, 193, 0) 100%
+        theme('colors.primaryto2') 0%,
+        theme('colors.primaryto2') 100%
       );
     }
   }

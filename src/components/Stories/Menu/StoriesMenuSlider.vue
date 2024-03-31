@@ -5,36 +5,37 @@
   >
     <swiper-slide
       class="stories-menu-slider__item"
-      v-for="(story, index) in stories.stories"
+      v-for="(story, index) in stories"
       :key="story.id"
-      :style="{ backgroundColor: story.bg }"
-      @click="openStory(index)"
+      @click="openStory(story.id, index)"
     >
       <div class="stories-menu-slider__item-img">
-        <img src="/test.jpeg" alt="" />
+        <img :src="story.image.url" alt="" />
       </div>
       <div class="stories-menu-slider__item-title">
-        Открытие нового салона на Пушкина
+        {{ story.title }}
       </div>
     </swiper-slide>
   </swiper>
 </template>
 
-<script setup>
-import { ref } from 'vue';
+<script setup lang="ts">
 import { useStoriesStore } from 'src/stores/stories';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
-
-const stories = useStoriesStore();
+import { StoriesT } from 'src/models/api/main';
+const props = defineProps<{
+  stories: StoriesT[];
+}>();
+const s = useStoriesStore();
 
 const swiperOptions = ref({
   slidesPerView: 'auto',
 });
 
-const openStory = (index) => {
-  stories.storyIndex = index;
-  stories.isStoriesActive = true;
+const openStory = async (id: number, index: number) => {
+  mainStore().storyIndex = index;
+  mainStore().isStoriesActive = true;
 };
 </script>
 
@@ -72,6 +73,8 @@ const openStory = (index) => {
       }
       img {
         object-fit: cover;
+        width: 100%;
+        height: 100%;
       }
     }
     &-title {

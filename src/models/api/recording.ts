@@ -1,14 +1,15 @@
 export type MasterT = {
   id: number;
   name: string;
-  description: string;
+  description: string | null;
   profession: string;
   profile_image: {
     id: number;
     path: string;
     width: string;
     height: string;
-  };
+    url: string;
+  } | null;
   work_images: {
     id: number;
     path: string;
@@ -36,11 +37,20 @@ export type CategotyT = {
   };
 };
 
+export type ServiceT = {
+  id: number;
+  name: string;
+  price: string;
+  time: string;
+  description: string;
+};
+
 export type AvailableDayT = {
   date: string;
 };
 
 export type AvailableTimeT = {
+  id: number;
   date: string;
 };
 

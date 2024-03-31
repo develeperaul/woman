@@ -14,24 +14,29 @@
           </div>
           <div class="tw-grid tw-gap-1.5">
             <div class="tw-text-t1">
-              {{ master.servicesList[0].sub_services[0].name }}
+              {{ dataRecord.service.name }}
             </div>
             <div class="tw-flex tw-gap-4 tw-text-gray2">
-              <div>{{ master.servicesList[0].sub_services[0].price }}</div>
-              <div>{{ master.servicesList[0].sub_services[0].time }}</div>
+              <div>{{ dataRecord.service.price }}</div>
+              <div>{{ dataRecord.service.time }}</div>
             </div>
           </div>
         </div>
 
         <div class="tw-flex tw-gap-2.5 tw-items-center">
-          <q-avatar size="54px">
-            <img :src="master.url" alt="" />
+          <q-avatar size="54px" class="tw-bg-second">
+            <img
+              v-if="dataRecord.personal.profile_image"
+              :src="dataRecord.personal.profile_image.url"
+              alt=""
+            />
+            <base-icon v-else name="user" class="tw-w-6 tw-h-6" />
           </q-avatar>
 
           <div class="tw-grid tw-gap-1.5">
-            <div class="tw-text-t1">{{ master.name }}</div>
+            <div class="tw-text-t1">{{ dataRecord.personal.name }}</div>
             <div class="tw-flex tw-gap-4 tw-text-gray2">
-              <div>{{ master.position }}</div>
+              <div>{{ dataRecord.personal.profession }}</div>
             </div>
           </div>
         </div>
@@ -44,84 +49,80 @@
           class="tw-flex tw-gap-2.5 tw-overflow-auto scroll-none -tw-mx-4 tw-py-2"
         >
           <button
-            v-for="(n, index) in master.dates"
+            v-for="(n, index) in dataRecord.dates"
             class="tw-py-1.5 tw-px-2 tw-rounded-lg tw-grid tw-gap-0.5"
             :class="[
               index === 0 ? 'tw-ml-4' : '',
-              selectedDay && selectedDay === n.day
+              selectedDay && selectedDay === n
                 ? 'tw-bg-filter  tw-text-white  tw-shadow-btn'
                 : 'tw-bg-whitedarken',
             ]"
-            @click="selectDate(n.day)"
+            @click="selectDate(n)"
           >
-            <span> {{ dayjs(n.day).format('DD.MM') }} </span>
+            <span> {{ dayjs(n).format('DD.MM') }} </span>
             <span
               :class="[
-                selectedDay && selectedDay === n.day
+                selectedDay && selectedDay === n
                   ? '  tw-text-white'
                   : 'tw-text-gray2',
               ]"
             >
-              {{ dayjs(n.day).locale('ru').format('dd') }}
+              {{ dayjs(n).locale('ru').format('dd') }}
             </span>
           </button>
         </div>
         <div class="tw-flex tw-gap-2.5 tw-overflow-auto scroll-none -tw-mx-4">
           <button
-            v-for="(n, index) in timeList"
+            v-for="(n, index) in availableTimeList.data"
             class="tw-py-3 tw-px-4.5 tw-rounded-10 tw-border"
             :class="[
               index === 0 ? 'tw-ml-4' : '',
-              selectedTime === n
+              selectedTime === n.id
                 ? ' tw-border-primary tw-bg-second'
                 : 'tw-border-gray3',
             ]"
-            @click="selectedTime = n"
+            @click="selectedTime = n.id"
           >
-            <span class="tw-text-gray2"> {{ n }} </span>
+            <span class="tw-text-gray2"> {{ n.date }} </span>
           </button>
         </div>
       </div>
-      <base-button theme="gradient" @click="signUp"> Записаться </base-button>
+      <base-button theme="gradient" @click="record"> Записаться </base-button>
     </div>
-    <SuccessRecord v-model="success" />
+    <SuccessRecord v-model="message" />
   </div>
 </template>
 <script setup lang="ts">
 import dayjs from 'dayjs';
 import 'src/utils/locale-ru';
-import { Master, Record } from 'src/models';
+import { Record } from 'src/models';
 import SuccessRecord from 'src/components/Modal/SuccessRecord.vue';
+import { LastJournalRecordT } from 'src/models/api/main';
+import { RecordServiceT } from 'src/models/api/recording';
 
 const props = defineProps<{
-  master: Master;
+  dataRecord: LastJournalRecordT;
 }>();
-const fast = ref({
-  haircut: {
-    name: 'Стрижка женская',
-    price: '1 000 ₽',
-    time: '1 ч',
-  },
-  master: {
-    name: 'Ксения Попова',
-    position: 'Мастер',
-    url: '/test.jpeg',
-  },
-  dates: getDates(),
-});
+const message = ref<RecordServiceT | null>();
+const { availableTimeList } = storeToRefs(recordsStore());
+
 const storeRecords = recordsStore();
 const success = ref(false);
-const timeList = ref<string[]>([]);
 const selectedDay = ref<string | null>(null);
-const selectedTime = ref<string | null>(null);
+const selectedTime = ref<number | null>(null);
 const selectDate = (day: string) => {
-  const obj = props.master.dates.find((item) => item.day === day);
+  recordsStore().getAvailableTimes({
+    service_id: props.dataRecord.service.id,
+    personnel_id: props.dataRecord.personal.id,
+    date: dayjs(day).format('YYYY-MM-DD'),
+  });
+
   selectedTime.value = null;
   selectedDay.value = day;
 
-  if (obj) {
-    timeList.value = obj.times;
-  }
+  // if (obj) {
+  //   timeList.value = obj.times;
+  // }
 };
 function getDates() {
   return [...Array(10)].map((item, index) => {
@@ -133,25 +134,15 @@ function getDates() {
   });
 }
 
-const signUp = () => {
-  const obj = {
-    service: {
-      name: props.master.servicesList[0].sub_services[0].name,
-      duration: props.master.servicesList[0].sub_services[0].time,
-      price: props.master.servicesList[0].sub_services[0].price,
-    },
-    master: {
-      name: props.master.name,
-      position: props.master.position,
-      url: props.master.url,
-    },
-    date: {
-      day: selectedDay.value,
-      time: selectedTime.value,
-    },
-  } as Record;
-  storeRecords.addRecords(obj);
-  setTimeout(() => (success.value = true), 500);
+const record = async () => {
+  if (selectedTime.value)
+    message.value = await storeRecords.record({
+      personnel_id: props.dataRecord.personal.id,
+      service_id: props.dataRecord.service.id,
+      work_slot_id: selectedTime.value,
+    });
+  selectedDay.value = null;
+  selectedTime.value = null;
 };
 </script>
 <style lang="scss" scoped></style>

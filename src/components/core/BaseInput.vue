@@ -6,7 +6,7 @@
     <div class="input__wrapper" :class="{ error: errorMessage }">
       <input
         v-model="value"
-        v-maska
+        v-maska:option
         :data-maska="maska"
         :type="type"
         class="input"
@@ -35,7 +35,7 @@
 </template>
 <script setup lang="ts">
 import { useField } from 'vee-validate';
-
+import { Mask } from 'maska';
 const props = withDefaults(
   defineProps<{
     modelValue: string;
@@ -52,6 +52,7 @@ const props = withDefaults(
     disabled: false,
   }
 );
+const mask = new Mask({ mask: props.maska });
 
 const emitsInput = defineEmits<{
   (e: 'update:modelValue', val: string | number): void;
@@ -61,6 +62,7 @@ const { errorMessage, value, meta } = useField(name, rules, {
   validateOnValueUpdate: false,
   initialValue: modelValue,
 });
+watch(value, (val) => emitsInput('update:modelValue', mask.unmasked(val)));
 </script>
 <style lang="scss" scoped>
 .field {

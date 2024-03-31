@@ -73,8 +73,15 @@ const emit = defineEmits<{
 const open = ref(false);
 const rating = ref<number | null>(null);
 const success = ref(false);
-const sendRating = () => {
-  if (rating.value) success.value = true;
+const sendRating = async () => {
+  if (rating.value) {
+    try {
+      await mainStore().sendRating(rating.value);
+      if (rating.value) success.value = true;
+    } catch (e) {
+      throw e;
+    }
+  }
 };
 onMounted(() => (open.value = props.modelValue));
 watch(

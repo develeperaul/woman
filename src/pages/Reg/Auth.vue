@@ -21,10 +21,16 @@
 </template>
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-const phone = ref('');
+
+const { phone } = storeToRefs(authStore());
 const router = useRouter();
-const submit = () => {
-  router.push({ name: 'verify' });
+const submit = async () => {
+  try {
+    const res = await authStore().login(`+7${phone.value}`);
+    router.push({ name: 'verify' });
+  } catch (e) {
+    throw e;
+  }
 };
 </script>
 <style lang="scss" scoped></style>

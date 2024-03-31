@@ -37,6 +37,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   modelValue: boolean;
+  id: string;
 }>();
 const emit = defineEmits<{
   (e: 'update:modelValue', val: boolean): void;
@@ -44,9 +45,16 @@ const emit = defineEmits<{
 const open = ref(false);
 
 const success = ref(false);
-const checkout = () => {
-  success.value = true;
+const checkout = async () => {
+  try {
+    await cosmeticsStore().orderProduct(+props.id);
+
+    success.value = true;
+  } catch (e) {
+    throw e;
+  }
 };
+
 onMounted(() => (open.value = props.modelValue));
 watch(
   () => props.modelValue,

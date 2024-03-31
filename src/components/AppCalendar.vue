@@ -9,6 +9,7 @@
       <WeekDays />
       <div class="days">
         <div v-for="item in currentMonthWeekFirstDay" :key="item"></div>
+
         <MonthDayItem
           v-for="day in currentMonthDays"
           :is-active="selectDate === day.date"
@@ -20,20 +21,21 @@
       </div>
     </div>
 
+    {{ selectDate }}
     <div
       v-if="selectDate"
       class="tw-flex tw-gap-2.5 tw-overflow-auto scroll-none -tw-mx-4"
     >
       <button
-        v-for="(item, index) in timeList"
+        v-for="(item, index) in availableTimes"
         class="tw-rounded-10 tw-px-4 tw-h-[45px] tw-text-t1"
         :class="[
-          time === item ? ' tw-bg-green tw-text-white ' : 'tw-bg-white',
+          time === item.id ? ' tw-bg-green tw-text-white ' : 'tw-bg-white',
           index === 0 ? 'tw-ml-4' : '',
         ]"
-        @click="time = item"
+        @click="time = item.id"
       >
-        {{ item }}
+        {{ item.date }}
       </button>
     </div>
   </div>
@@ -62,7 +64,11 @@ export default defineComponent({
     WeekDays,
     MonthDayItem,
   },
-  emits: ['selectDate'],
+  props: {
+    availableDays: Array,
+    availableTimes: Array,
+  },
+  emits: ['selectDate', 'current'],
   setup(props, { emit }) {
     const selectDate = ref('');
 
@@ -92,13 +98,14 @@ export default defineComponent({
       const lastDayOfTheMonthWeekday = getWeekday(`${year}-${month}-01`);
       return lastDayOfTheMonthWeekday;
     });
+
     const currentMonthDays = computed(() =>
       [...Array(numberOfDaysInMonth.value)].map((day, index) => {
         const d = dayjs(`${year.value}-${month.value}-${index + 1}`);
 
         return {
           date: d.format('YYYY-MM-DD'),
-          past: d.isBefore(dayjs()),
+          past: isDate(d.format('YYYY-MM-DD')),
           isReserve: index === 2 ? true : false,
           isCurrentMonth: true,
           events:
@@ -128,6 +135,19 @@ export default defineComponent({
       })
     );
 
+    const isDate = (date: string) => {
+      if (props.availableDays && props.availableDays.length > 0) {
+        return !props.availableDays.some((item) => {
+          return (
+            !dayjs(item.date).isBefore(dayjs()) &&
+            dayjs(dayjs(item.date).format('YYYY-MM-DD')).unix() ===
+              dayjs(date).unix()
+          );
+        });
+      }
+      return true;
+    };
+
     const dateSelected = (newSelectedDate) => {
       selectedDate.value = newSelectedDate;
     };
@@ -135,18 +155,19 @@ export default defineComponent({
       selectDate.value = day.date;
     };
     onMounted(() => {
+      emit('current', selectedDate.value);
       // console.log(dayjs().month(0).daysInMonth());
       // console.log(dayjs(selectedDate.value).daysInMonth());
       // console.log(dayjs().locale("ru"));
     });
-
+    watch(selectedDate, (val) => {
+      emit('current', val);
+    });
     watch(selectDate, () => {
       time.value = null;
     });
 
     watch(time, (val) => {
-      console.log(val);
-
       if (val === null) emit('selectDate', null);
       else emit('selectDate', { day: selectDate.value, time: val });
     });

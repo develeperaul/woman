@@ -1,90 +1,114 @@
 <template>
   <q-page class="tw-container">
     <div class="card tw-mb-5">
-      <div class="tw-text-t1 tw-font-semibold tw-mb-2.5" v-if="service">
-        {{ service.name }}
+      <div
+        class="tw-text-t1 tw-font-semibold tw-mb-2.5"
+        v-if="dataRecord.service"
+      >
+        {{ dataRecord.service.name }}
       </div>
       <div
         class="tw-grid tw-grid-cols-[52px_1fr] tw-gap-5 tw-mb-1.5"
-        v-if="master"
+        v-if="dataRecord.master"
       >
         <div class="tw-text-gray2">Мастер</div>
-        <div>{{ master.name }}</div>
+        <div>{{ dataRecord.master.name }}</div>
       </div>
       <div class="tw-grid tw-grid-cols-[52px_1fr] tw-gap-5 tw-mb-2.5">
         <div class="tw-text-gray2">Адрес</div>
-        <div>Проспект Октября, 2</div>
+
+        <div>
+          {{ mainStore().salonLocal.city }} {{ mainStore().salonLocal.street }},
+          {{ mainStore().salonLocal.number_house }}
+        </div>
       </div>
-      <div class="tw-text-t1 tw-flex tw-gap-5" v-if="service">
-        <div>{{ service.price }}</div>
-        <div class="tw-text-[#8E8C8C]">{{ service.time }}</div>
+      <div class="tw-text-t1 tw-flex tw-gap-5" v-if="dataRecord.service">
+        <div>{{ dataRecord.service.price_from }}</div>
+        <div class="tw-text-[#8E8C8C]">{{ dataRecord.service.time }}</div>
       </div>
     </div>
     <div class="tw-mb-7.5">
-      <AppCalendar @selectDate="selectDate" />
+      <AppCalendar
+        @current="current"
+        @selectDate="selectDate"
+        :availableDays="availableDayList.data"
+        :availableTimes="availableTimeList.data"
+      />
     </div>
 
-    <base-button :disabled="!selectedDate" theme="gradient" @click="signUp">
+    <base-button
+      :disabled="!(dataRecord.day && dataRecord.time)"
+      theme="gradient"
+      @click="record"
+    >
       Записаться
     </base-button>
-    <SuccessRecord v-model="success" />
+    <SuccessRecord v-model="message" />
   </q-page>
 </template>
 <script setup lang="ts">
 import AppCalendar from 'src/components/AppCalendar.vue';
 import { Record } from 'src/models';
+import { RecordServiceT } from 'src/models/api/recording';
 import SuccessRecord from 'src/components/Modal/SuccessRecord.vue';
-const props = defineProps<{
-  master_id: string;
-  services_id: string;
-  sub_services_id: string;
-}>();
-import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
+import dayjs, { Dayjs } from 'dayjs';
+
+const { dataRecord, availableDayList, availableTimeList } = storeToRefs(
+  recordsStore()
+);
+
 const storeRecords = recordsStore();
 const storeSerives = servisesStore();
 const { masters } = storeToRefs(storeSerives);
 const success = ref(false);
-const master = computed(() => storeSerives.getMaster(+props.master_id));
-const service = computed(() => {
-  if (master.value) {
-    const s = master.value.servicesList.find(
-      (item) => item.id === +props.services_id
-    );
-    if (props.sub_services_id && s) {
-      return s.sub_services.find((item) => item.id === +props.sub_services_id);
-    }
+const currentSelectDay = ref<Dayjs>(dayjs());
+const message = ref<RecordServiceT | null>();
+const selectDate = (e: { day: string; time: number } | null) => {
+  if (e) {
+    dataRecord.value.day = e.day;
+    dataRecord.value.time = e.time;
   }
+};
+const current = (e: Dayjs) => {
+  currentSelectDay.value = e;
+  getData();
+};
+const record = async () => {
+  if (
+    dataRecord.value.master &&
+    dataRecord.value.time &&
+    dataRecord.value.service
+  )
+    message.value = await storeRecords.record({
+      personnel_id: dataRecord.value.master.id,
+      work_slot_id: dataRecord.value.time,
+      service_id: dataRecord.value.service.id,
+    });
+
+  success.value = true;
+};
+
+const getData = () => {
+  if (dataRecord.value.master && dataRecord.value.service)
+    Promise.allSettled([
+      storeRecords.getAvailableDays({
+        personnel_id: dataRecord.value.master.id as number,
+        year: currentSelectDay.value.format('YYYY'),
+        month: currentSelectDay.value.format('MM'),
+      }),
+      storeRecords.getAvailableTimes({
+        service_id: dataRecord.value.service.id,
+        personnel_id: dataRecord.value.master.id as number,
+        date: currentSelectDay.value.format('YYYY-MM-DD'),
+      }),
+    ]);
+};
+
+onMounted(() => {
+  if (dataRecord.value.service === null || dataRecord.value.master === null)
+    return useRouter().push({ name: 'to-record' });
 });
-
-const selectedDate = ref<{ day: string; time: string } | null>(null);
-const selectDate = (e: { day: string; time: string } | null) => {
-  selectedDate.value = e;
-};
-const signUp = () => {
-  console.log(selectedDate.value, service.value, master.value);
-
-  if (selectedDate.value && service.value && master.value) {
-    const obj = {
-      service: {
-        name: service.value.name,
-        duration: service.value.time,
-        price: service.value.price,
-      },
-      master: {
-        name: master.value.name,
-        position: master.value.position,
-        url: master.value.url,
-      },
-      date: {
-        day: selectedDate.value.day,
-        time: selectedDate.value.time,
-      },
-    };
-
-    storeRecords.addRecords(obj);
-    setTimeout(() => (success.value = true), 500);
-  }
-};
 </script>
 <style lang="scss" scoped>
 .modal {

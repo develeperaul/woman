@@ -16,4 +16,5 @@ export type BonusHistoryItemT = {
   service: string;
   price: string;
   created_at: string;
+  amount: string;
 };

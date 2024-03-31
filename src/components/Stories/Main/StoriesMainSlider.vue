@@ -13,15 +13,16 @@
     <swiper-slide
       class="stories-main-slider__item"
       :style="{ backgroundColor: story.bg }"
-      v-for="(story, i) in stories.stories"
+      v-for="(story, i) in mainStore().storyList.data"
       :key="i"
       @click="slideTo(i, speed)"
     >
       <StoriesGroupSlider
-        :mainStory="story"
+        :mainStory="mainStore().storyGroup.data[story.id]"
         @swiper="setGroupSlider"
         @slideChange="onSlideChange"
       />
+
       <q-btn
         round
         flat
@@ -65,13 +66,13 @@ const activeIndex = computed(() => {
 });
 
 const setActiveIndex = () => {
-  stories.storyIndex = activeIndex.value;
+  mainStore().storyIndex = activeIndex.value;
 };
 
 const setMainSlider = (swiper) => {
   mainSlider.value = swiper;
   setProgress();
-  slideTo(stories.storyIndex);
+  slideTo(mainStore().storyIndex);
 };
 
 const setGroupSlider = (swiper) => {
@@ -85,8 +86,8 @@ const swiperOptions = ref({
 
 const closeStory = () => {
   stopProgress();
-  stories.isStoriesActive = false;
-  stories.storyIndex = null;
+  mainStore().isStoriesActive = false;
+  mainStore().storyIndex = null;
 };
 
 const slideNext = () => {
@@ -164,6 +165,7 @@ const stopProgress = () => {
 };
 
 const onSlideChange = () => {
+  console.log('ss');
   mainSlider.value ? (stopProgress(), setProgress()) : false;
   setActiveIndex();
 };

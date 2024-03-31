@@ -1,7 +1,7 @@
 <template>
   <div
     class="stories-main-wrapper env-t env-b"
-    v-if="stories.isStoriesActive"
+    v-if="isStoriesActive"
     @click="closeStories($event)"
   >
     <div ref="wrapperContent" class="stories-main-wrapper__content">
@@ -10,12 +10,11 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
+<script setup lang="ts">
 import StoriesMainSlider from 'src/components/Stories/Main/StoriesMainSlider.vue';
-import { useStoriesStore } from 'src/stores/stories';
 
-const stories = useStoriesStore();
+const { isStoriesActive } = storeToRefs(mainStore());
+
 const wrapperContent = ref(null);
 const storiesMainSlider = ref(null);
 

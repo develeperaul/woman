@@ -25,7 +25,9 @@ const emit = defineEmits<{
 }>();
 const open = ref(false);
 
-const checkout = () => {};
+const checkout = async () => {
+  await profileStore().delUser();
+};
 onMounted(() => (open.value = props.modelValue));
 watch(
   () => props.modelValue,

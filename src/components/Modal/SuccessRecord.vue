@@ -9,20 +9,24 @@
       <div class="title tw-mb-6 tw-text-center">Вы успешно записаны!</div>
       <div class="card tw-w-full tw-mb-7.5">
         <div class="tw-font-semibold tw-text-t1 tw-mb-1.5">
-          Лечебная стрижка
+          {{ modelValue.service }}
         </div>
 
         <div class="tw-flex tw-items-center tw-gap-2.5 tw-mb-5">
           <base-icon name="calendar" class="tw-w-6 tw-h-6 tw-text-primary" />
-          <div>14 октября (вт) 10:00</div>
+          <div>
+            {{
+              dayjs(modelValue.date).locale('ru').format('D MMMM (dd) HH:mm')
+            }}
+          </div>
         </div>
         <div class="tw-grid tw-grid-cols-[52px_1fr] tw-gap-5 tw-mb-1.5">
           <div class="tw-text-gray2">Мастер</div>
-          <div>Ксения Попова</div>
+          <div>{{ modelValue.personnel }}</div>
         </div>
         <div class="tw-grid tw-grid-cols-[52px_1fr] tw-gap-5">
           <div class="tw-text-gray2">Адрес</div>
-          <div>Проспект Октября, 2</div>
+          <div style="word-break: break-all">{{ modelValue.address }}</div>
         </div>
       </div>
       <base-button
@@ -30,7 +34,9 @@
         class="tw-w-full"
         @click="
           () => (
-            $router.push({ name: 'records' }), $emit('update:modelValue', false)
+            $router.push({ name: 'home' }),
+            $emit('update:modelValue', null),
+            recordsStore().rezetDataStore()
           )
         "
       >
@@ -40,8 +46,11 @@
   </teleport>
 </template>
 <script setup lang="ts">
+import dayjs from 'dayjs';
+import { RecordServiceT } from 'src/models/api/recording';
+
 const props = defineProps<{
-  modelValue: boolean;
+  modelValue: RecordServiceT;
 }>();
 </script>
 <style lang="scss" scoped>
