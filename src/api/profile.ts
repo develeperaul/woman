@@ -12,11 +12,7 @@ export const edit = (obj: {
   email?: string | null;
   birthday?: string | null;
 }) => {
-  const body = new FormData();
-  for (let key in obj) {
-    if (obj[key] !== null) body.append(`${key}`, obj[key] as string);
-  }
-  return api.mainKy.put('customer', { body }).json();
+  return api.mainKy.put('customer', { json: obj }).json();
 };
 
 // Удалить пользователя

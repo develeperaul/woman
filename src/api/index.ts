@@ -3,7 +3,10 @@ import * as Tokens from './tokens';
 
 export class Server {
   mainKy: KyInstance;
-  constructor(url: string, option: { prefix: string }) {
+  constructor(
+    url: string,
+    option: { prefix: string; timeout?: number | false }
+  ) {
     const prefixUrl = url + option.prefix;
     this.mainKy = ky.create({
       prefixUrl: prefixUrl,
@@ -17,10 +20,16 @@ export class Server {
           },
         ],
       },
+      timeout: option.timeout,
     });
   }
 }
 
 export const api = new Server(process.env.BASE_URL, {
   prefix: process.env.BASE_URL_PREFIX,
+});
+
+export const apiAuth = new Server(process.env.BASE_URL, {
+  prefix: process.env.BASE_URL_PREFIX,
+  timeout: 60000,
 });

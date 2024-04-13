@@ -1,16 +1,8 @@
 import { DataObj } from 'src/models/api';
 import { api } from './index';
 
-export const FCMTokenSend = (token: string) => {
-  const body = new FormData();
-  body.append('toke', token);
-  api.mainKy.post('fire-base/token', { body }).json();
-};
-
-export const FCMTokenEdit = (token: string) => {
-  const body = new FormData();
-  body.append('toke', token);
-  return api.mainKy.put('fire-base/token', { body }).json();
+export const FCMTokenSend = (obj: { token: string }) => {
+  api.mainKy.post('fire-base/token', { json: obj }).json();
 };
 
 export const FCMTokenSettings = (): Promise<

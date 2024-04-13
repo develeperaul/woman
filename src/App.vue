@@ -7,7 +7,12 @@ import { getAccessToken } from './api/tokens';
 
 const storeMain = mainStore();
 onMounted(async () => {
-  if (getAccessToken()) await storeMain.getSalons();
+  if (getAccessToken()) {
+    Promise.allSettled([
+      await profileStore().getProfile(),
+      await storeMain.getSalons(),
+    ]);
+  }
 });
 // getSalons
 </script>

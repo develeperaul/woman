@@ -46,7 +46,7 @@
   }
   &.active .icon,
   &.active .text {
-    @apply tw-text-primary;
+    @apply tw-text-navto;
   }
 }
 </style>

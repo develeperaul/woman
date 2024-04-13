@@ -3,11 +3,19 @@
   "appName": "Woman",
   "webDir": "www",
   "server": {
-    "androidScheme": "https"
+    "androidScheme": "https",
+    "url": "http://192.168.1.102:9500"
   },
   "plugins": {
     "SplashScreen": {
       "launchAutoHide": false
+    },
+    "PushNotifications": {
+      "presentationOptions": [
+        "badge",
+        "sound",
+        "alert"
+      ]
     }
   }
 }

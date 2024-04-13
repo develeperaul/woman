@@ -71,7 +71,7 @@ module.exports = configure(function (/* ctx */) {
       // publicPath: '/',
       // analyze: true,
       env: {
-        BASE_URL: 'http://5.35.92.149',
+        BASE_URL: 'https://demo.checake.ru',
         BASE_URL_PREFIX: '/api',
       },
       // rawDefine: {}
@@ -119,7 +119,7 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
-      // https: true
+      // https: true,
       open: true, // opens browser window automatically
     },
 

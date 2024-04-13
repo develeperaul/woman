@@ -17,16 +17,22 @@
   </popup>
 </template>
 <script setup lang="ts">
+import { cleanTokensData } from 'src/api/tokens';
+import { useRouter } from 'vue-router';
 const props = defineProps<{
   modelValue: boolean;
 }>();
 const emit = defineEmits<{
   (e: 'update:modelValue', val: boolean): void;
 }>();
+
+const router = useRouter();
 const open = ref(false);
 
 const checkout = async () => {
+  cleanTokensData();
   await profileStore().delUser();
+  router.push({ name: 'auth' });
 };
 onMounted(() => (open.value = props.modelValue));
 watch(

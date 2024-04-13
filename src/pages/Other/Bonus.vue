@@ -5,7 +5,7 @@
       v-if="userBonus.data"
     >
       <div class="card tw-flex tw-gap-1.5">
-        <base-icon name="briliant" class="tw-w-6 tw-h-6 tw-text-primary" />
+        <base-icon name="briliant" class="tw-w-6 tw-h-6 tw-text-primaryto" />
         <div>
           <div class="tw-text-h2 tw-font-semibold tw-mb-0.5">
             {{ userBonus.data.bonus }}

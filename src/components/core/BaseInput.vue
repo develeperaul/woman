@@ -46,10 +46,12 @@ const props = withDefaults(
     label?: string;
     placeholder?: string;
     disabled?: boolean;
+    unMask?: boolean;
   }>(),
   {
     type: 'text',
     disabled: false,
+    unMask: false,
   }
 );
 const mask = new Mask({ mask: props.maska });
@@ -62,7 +64,10 @@ const { errorMessage, value, meta } = useField(name, rules, {
   validateOnValueUpdate: false,
   initialValue: modelValue,
 });
-watch(value, (val) => emitsInput('update:modelValue', mask.unmasked(val)));
+watch(value, (val) => {
+  if (props.unMask) emitsInput('update:modelValue', mask.unmasked(val));
+  else emitsInput('update:modelValue', val);
+});
 </script>
 <style lang="scss" scoped>
 .field {

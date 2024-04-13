@@ -112,7 +112,7 @@ const swiperOptions = ref({
 
       span {
         position: absolute;
-        background-color: theme('colors.primary');
+        background-color: theme('colors.primaryto');
         left: 0;
         top: 0;
         width: 100%;

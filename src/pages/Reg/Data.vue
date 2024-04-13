@@ -72,7 +72,10 @@ const now = dayjs().valueOf();
 const name = ref('');
 const date = ref('');
 const gender = ref<'m' | 'w' | null>(null);
-const submit = (val) => {
+const submit = async () => {
+  console.log({ name: name.value, birthday: date.value });
+
+  profileStore().editUser({ name: name.value, birthday: date.value });
   router.push({ name: 'home' });
 };
 </script>

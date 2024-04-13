@@ -78,7 +78,7 @@
             :class="[
               index === 0 ? 'tw-ml-4' : '',
               selectedTime === n.id
-                ? ' tw-border-primary tw-bg-second'
+                ? ' tw-border-primaryto tw-bg-second'
                 : 'tw-border-gray3',
             ]"
             @click="selectedTime = n.id"

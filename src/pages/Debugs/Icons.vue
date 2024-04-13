@@ -2,7 +2,7 @@
   <main class="main tw-p-4 tw-pb-20">
     <div class="tw-flex tw-flex-wrap -tw-m-4">
       <div
-        class="tw-w-1/3 lg:tw-w-1/6 md:tw-w-1/4 tw-p-4 tw-text-center tw-text-primary"
+        class="tw-w-1/3 lg:tw-w-1/6 md:tw-w-1/4 tw-p-4 tw-text-center tw-text-primaryto"
         v-for="icon in icons"
       >
         <base-icon
@@ -20,7 +20,7 @@
     </div>
     <div
       v-show="success"
-      class="alert tw-bg-primary tw-rounded tw-text-white tw-fixed tw-inset-x-0 tw-bottom-0 tw-p-2"
+      class="alert tw-bg-primaryto tw-rounded tw-text-white tw-fixed tw-inset-x-0 tw-bottom-0 tw-p-2"
     >
       Скопировано успешно
     </div>

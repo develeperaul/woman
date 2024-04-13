@@ -7,7 +7,10 @@
             <div
               class="tw-rounded-full tw-h-10 tw-w-10 tw-bg-second tw-grid tw-place-content-center"
             >
-              <base-icon name="mirror" class="tw-w-5 tw-h-5 tw-text-primary" />
+              <base-icon
+                name="mirror"
+                class="tw-w-5 tw-h-5 tw-text-primaryto"
+              />
             </div>
             <div class="tw-text-t1">Записаться на услугу</div>
           </div>
@@ -21,7 +24,7 @@
             <div
               class="tw-rounded-full tw-h-10 tw-w-10 tw-bg-second tw-grid tw-place-content-center"
             >
-              <base-icon name="women" class="tw-w-5 tw-h-5 tw-text-primary" />
+              <base-icon name="women" class="tw-w-5 tw-h-5 tw-text-primaryto" />
             </div>
             <div class="tw-text-t1">Записаться к мастеру</div>
           </div>

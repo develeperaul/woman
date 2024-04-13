@@ -7,7 +7,6 @@ export default ({ router, store }) => {
   //     store.commit("auth/setAuth", true);
   //   }
   router.beforeEach((to, from, next) => {
-    console.log(from.meta);
     if (to.meta && to.meta.auth) {
       if (getAccessToken()) return next();
       else {

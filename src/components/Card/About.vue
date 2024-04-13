@@ -25,21 +25,21 @@
                 <div class="tw-flex tw-gap-2">
                   <a
                     href="#"
-                    class="tw-rounded-full tw-w-[34px] tw-h-[34px] tw-bg-primary tw-grid tw-place-content-center"
+                    class="tw-rounded-full tw-w-[34px] tw-h-[34px] tw-bg-primaryto tw-grid tw-place-content-center"
                   >
                     <base-icon name="wp" class="tw-text-white tw-w-4 tw-h-4" />
                   </a>
 
                   <a
                     href="#"
-                    class="tw-rounded-full tw-w-[34px] tw-h-[34px] tw-bg-primary tw-grid tw-place-content-center"
+                    class="tw-rounded-full tw-w-[34px] tw-h-[34px] tw-bg-primaryto tw-grid tw-place-content-center"
                   >
                     <base-icon name="tg" class="tw-text-white tw-w-4 tw-h-4" />
                   </a>
 
                   <a
                     href="#"
-                    class="tw-rounded-full tw-w-[34px] tw-h-[34px] tw-bg-primary tw-grid tw-place-content-center"
+                    class="tw-rounded-full tw-w-[34px] tw-h-[34px] tw-bg-primaryto tw-grid tw-place-content-center"
                   >
                     <base-icon name="vk" class="tw-text-white tw-w-4 tw-h-4" />
                   </a>

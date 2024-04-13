@@ -31,8 +31,8 @@ const back = () => {
   padding-bottom: 20px;
   background: linear-gradient(
     180deg,
-    theme('colors.primaryto') 0%,
-    theme('colors.primary') 100%
+    theme('colors.primary') 0%,
+    theme('colors.primaryto') 100%
   );
 }
 </style>

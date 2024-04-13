@@ -1,20 +1,11 @@
 import { defineStore } from 'pinia';
-import { auth, checkStatus } from 'src/api/auth';
+import { auth } from 'src/api/auth';
 import { setTokensData } from 'src/api/tokens';
 export default defineStore('auth', () => {
   const phone = ref<String>('');
   const login = async () => {
     try {
-      return (await auth(`+7${phone.value}`)).data;
-    } catch (e) {
-      throw e;
-    }
-  };
-
-  const check = async () => {
-    try {
-      const res = await checkStatus(`+7${phone.value}`);
-
+      const res = (await auth(`+7${phone.value}`)).data;
       if (res.token) setTokensData(res.token, Date.now());
       return res;
     } catch (e) {
@@ -25,6 +16,5 @@ export default defineStore('auth', () => {
   return {
     phone,
     login,
-    check,
   };
 });

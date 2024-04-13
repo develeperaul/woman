@@ -1,6 +1,6 @@
 import { TimeoutError, HTTPError } from 'ky';
 import { Notify } from 'quasar';
-
+import { cleanTokensData } from 'src/api/tokens';
 export default ({ app, router }) => {
   window.addEventListener('unhandledrejection', ({ reason: err }) => {
     errorHandler(err);
@@ -16,15 +16,16 @@ export default ({ app, router }) => {
 
   function errorHandler(err) {
     if (err instanceof TimeoutError) {
-      return;
+      return 'reload';
     } else if (err instanceof HTTPError) {
       if (err.response.status === 401) {
-        console.log(401);
-        Notify.create({
-          type: 'negative',
-          message: 'Test 401',
-          position: 'top',
-        });
+        cleanTokensData();
+        router.push({ name: 'auth' });
+        // Notify.create({
+        //   type: 'negative',
+        //   message: 'Test 401',
+        //   position: 'top',
+        // });
         return;
       } else if (err.response.status === 403) {
         console.log(403);

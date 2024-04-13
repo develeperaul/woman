@@ -15,17 +15,17 @@ const props = withDefaults(
 .btn {
   @apply tw-px-2.5 tw-py-4 tw-font-semibold tw-text-white tw-rounded-2xl tw-w-full;
   &_bg {
-    @apply tw-bg-primary;
+    @apply tw-bg-primaryto;
   }
   &_gradient {
     background: linear-gradient(
       180deg,
-      theme('colors.primaryto') 0%,
-      theme('colors.primary') 100%
+      theme('colors.primary') 0%,
+      theme('colors.primaryto') 100%
     );
   }
   &_border {
-    @apply tw-bg-transparent tw-text-title tw-border tw-border-primary;
+    @apply tw-bg-transparent tw-text-title tw-border tw-border-primaryto;
   }
 }
 </style>

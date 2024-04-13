@@ -164,6 +164,16 @@ const routes: RouteRecordRaw[] = [
       },
 
       {
+        path: '/notifications',
+        name: 'notifications',
+        component: () => import('pages/Other/Notifications.vue'),
+        meta: {
+          title: 'Push-уведомления',
+          // auth: true,
+        },
+      },
+
+      {
         path: '/profile',
         name: 'profile',
         component: () => import('pages/Profile.vue'),
@@ -187,6 +197,9 @@ const routes: RouteRecordRaw[] = [
         path: '/data',
         name: 'data',
         component: () => import('pages/Reg/Data.vue'),
+        meta: {
+          auth: true,
+        },
       },
 
       {

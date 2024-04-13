@@ -5,7 +5,7 @@
     <div class="tw-flex tw-gap-2.5 tw-items-center tw-mb-3.5">
       <base-icon
         name="calendar"
-        class="tw-w-[22px] tw-h-[22px] tw-text-primary"
+        class="tw-w-[22px] tw-h-[22px] tw-text-primaryto"
       />
       {{ dayjs(upcomingRecord.date).locale('ru').format('D MMMM (dd) HH:mm') }}
     </div>

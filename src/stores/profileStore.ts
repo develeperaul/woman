@@ -20,9 +20,9 @@ export default defineStore('profile', () => {
     }
   };
 
-  const editUser = async () => {
+  const editUser = async (obj: { name: string; birthday: string }) => {
     try {
-      return await edit({ sex: 'unknown', name: 'test' });
+      return await edit({ ...obj, sex: 'unknown' });
     } catch (e) {
       throw e;
     }

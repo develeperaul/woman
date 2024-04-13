@@ -73,7 +73,9 @@ import ProfileExit from 'src/components/Modal/ProfileExit.vue';
 
 const { profile } = storeToRefs(profileStore());
 
-onMounted(async () => await profileStore().getProfile());
+onMounted(async () => {
+  if (profile.value) await profileStore().getProfile();
+});
 
 const openDelete = ref(false);
 const openExit = ref(false);
