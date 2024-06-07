@@ -44,7 +44,7 @@ export const personnelCategory = (obj: {
 
 //Показывает карточку мастера
 export const masterCard = (
-  personnel_id: number
+  personnel_id: string
 ): Promise<DataObj<MasterT | null>> =>
   api.mainKy(`personnel/${personnel_id}`).json();
 

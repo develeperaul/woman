@@ -1,7 +1,9 @@
 <template>
   <div class="tw-overflow-hidden -tw-mr-5.5">
     <StoriesMenuSlider :stories="stories" />
-    <StoriesMainWrapper />
+    <teleport to="body">
+      <StoriesMainWrapper />
+    </teleport>
   </div>
 </template>
 <script setup lang="ts">

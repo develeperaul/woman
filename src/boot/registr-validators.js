@@ -3,6 +3,8 @@ import { required, email, min } from '@vee-validate/rules';
 import { localize, setLocale } from '@vee-validate/i18n';
 import ru from '@vee-validate/i18n/dist/locale/ru.json';
 import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+dayjs.extend(customParseFormat);
 function cellphone(value) {
   // паттерн для чисел со знаком, дробная часть опциональна
   const pattern = /^\+7\(\d{3}\)-\d{3}\-\d{2}\-\d{2}$/;
@@ -32,7 +34,7 @@ function dateformat(value, [currentTime]) {
       var x = new Date(y, m, d);
       if (y > 1900) {
         if (currentTime) {
-          return currentTime > dayjs(value).valueOf();
+          return +currentTime > dayjs(value, 'DD-MM-YYYY').unix();
         } else {
           return (
             x.getFullYear() === y && x.getMonth() === m && x.getDate() === d

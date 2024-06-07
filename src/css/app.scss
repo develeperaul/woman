@@ -32,10 +32,18 @@
       height: 170px;
       background: linear-gradient(
         180deg,
-        theme('colors.primary2') 0%,
-        theme('colors.primaryto2') 100%
+        theme('colors.main_header') 0%,
+        theme('colors.main_headerto') 100%
       );
     }
+  }
+
+  .bg-head2 {
+    background: linear-gradient(
+      180deg,
+      theme('colors.main_header') 0%,
+      theme('colors.main_headerto') 100%
+    );
   }
 }
 
@@ -45,7 +53,7 @@
   }
 
   .env-b {
-    padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 10px));
   }
   .title {
     font-size: 20px;

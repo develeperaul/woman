@@ -10,7 +10,11 @@
   >
     <div
       class="item"
-      @click="$emit('chooseDay', day)"
+      @click="
+        () => {
+          if (!day.past) $emit('chooseDay', day);
+        }
+      "
       :class="{ active: isActive }"
     >
       <span>

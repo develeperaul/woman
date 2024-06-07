@@ -10,7 +10,7 @@
       @click="openStory(story.id, index)"
     >
       <div class="stories-menu-slider__item-img">
-        <img :src="story.image.url" alt="" />
+        <img :src="story.image.url" alt="" class="tw-object-cover" />
       </div>
       <div class="stories-menu-slider__item-title">
         {{ story.title }}

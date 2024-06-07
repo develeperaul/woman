@@ -71,7 +71,10 @@ watch(value, (val) => {
 </script>
 <style lang="scss" scoped>
 .field {
-  @apply tw-grid tw-gap-2;
+  @apply tw-grid;
+  label {
+    @apply tw-mb-2;
+  }
   input {
     @apply tw-rounded-10 tw-bg-white tw-text-t1 tw-px-4 tw-w-full tw-outline-none tw-pr-10;
     height: 50px;

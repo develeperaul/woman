@@ -13,9 +13,9 @@
         </div>
         <div
           @click="$router.push({ name: 'notifications' })"
-          class="tw-w-10 tw-h-10 tw-rounded-full tw-bg-primaryto tw-grid tw-place-content-center"
+          class="tw-w-10 tw-h-10 tw-rounded-full tw-bg-icons tw-grid tw-place-content-center"
         >
-          <base-icon name="bell" class="tw-w-6 tw-h-6 tw-text-white" />
+          <base-icon name="bell" class="tw-w-6 tw-h-6 tw-text-iconstext" />
         </div>
       </div>
       <div class="tw-grid tw-gap-3.5">
@@ -24,10 +24,7 @@
           class="card tw-flex tw-items-center tw-gap-3 tw-justify-between"
         >
           <div class="tw-flex tw-gap-3 tw-items-center">
-            <base-icon
-              name="briliant"
-              class="tw-w-6 tw-h-6 tw-text-primaryto"
-            />
+            <base-icon name="briliant" class="tw-w-6 tw-h-6 tw-text-icons" />
             <span class="tw-text-t1"> Мои бонусы </span>
           </div>
           <base-icon name="forward" class="tw-w-6 tw-h-6 tw-text-[#C7C7C7]" />
@@ -37,10 +34,7 @@
           class="card tw-flex tw-items-center tw-gap-3 tw-justify-between"
         >
           <div class="tw-flex tw-gap-3 tw-items-center">
-            <base-icon
-              name="kosmetika"
-              class="tw-w-6 tw-h-6 tw-text-primaryto"
-            />
+            <base-icon name="kosmetika" class="tw-w-6 tw-h-6 tw-text-icons" />
             <span class="tw-text-t1"> Косметика </span>
           </div>
           <base-icon name="forward" class="tw-w-6 tw-h-6 tw-text-[#C7C7C7]" />
@@ -51,7 +45,7 @@
           class="card tw-flex tw-items-center tw-gap-3 tw-justify-between"
         >
           <div class="tw-flex tw-gap-3 tw-items-center">
-            <base-icon name="action" class="tw-w-6 tw-h-6 tw-text-primaryto" />
+            <base-icon name="action" class="tw-w-6 tw-h-6 tw-text-icons" />
             <span class="tw-text-t1"> Акции </span>
           </div>
           <base-icon name="forward" class="tw-w-6 tw-h-6 tw-text-[#C7C7C7]" />

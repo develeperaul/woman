@@ -13,6 +13,7 @@
           label="Имя*"
           placeholder="Ваше имя"
           class="tw-mb-5"
+          rules="required"
         />
 
         <!-- :rules="`dateformat:${now}`" -->
@@ -23,6 +24,7 @@
           label="Дата рождения"
           placeholder="ДД-ММ-ГГГГ"
           class="tw-mb-5"
+          :rules="`dateformat:${now}`"
         />
 
         <div>
@@ -34,7 +36,7 @@
               class="tw-rounded-10 tw-text-t1 tw-w-[50px] tw-h-[50px]"
               :class="
                 gender === 'm'
-                  ? ' tw-bg-filter tw-text-white'
+                  ? ' tw-bg-category tw-text-white'
                   : 'tw-bg-white tw-text-gray2'
               "
             >
@@ -46,7 +48,7 @@
               class="tw-rounded-10 tw-text-t1 tw-w-[50px] tw-h-[50px]"
               :class="
                 gender === 'w'
-                  ? ' tw-bg-filter tw-text-white'
+                  ? ' tw-bg-category tw-text-white'
                   : 'tw-bg-white tw-text-gray2'
               "
             >
@@ -68,7 +70,7 @@
 import dayjs from 'dayjs';
 import { useRouter } from 'vue-router';
 const router = useRouter();
-const now = dayjs().valueOf();
+const now = dayjs().unix();
 const name = ref('');
 const date = ref('');
 const gender = ref<'m' | 'w' | null>(null);

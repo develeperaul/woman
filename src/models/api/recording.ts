@@ -35,6 +35,13 @@ export type CategotyT = {
     width: string;
     height: string;
   };
+  work_images: {
+    height: number;
+    id: number;
+    path: string;
+    url: string;
+    width: number;
+  }[];
 };
 
 export type ServiceT = {

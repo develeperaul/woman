@@ -21,7 +21,6 @@
       </div>
     </div>
 
-    {{ selectDate }}
     <div
       v-if="selectDate"
       class="tw-flex tw-gap-2.5 tw-overflow-auto scroll-none -tw-mx-4"
@@ -40,7 +39,6 @@
     </div>
   </div>
 </template>
-
 <script lang="ts">
 import 'src/utils/locale-ru';
 import { defineComponent, computed, ref, reactive, onMounted } from 'vue';
@@ -49,7 +47,11 @@ import WeekDays from './Calendar/WeekDays.vue';
 import MonthDayItem from './Calendar/MonthDayItem.vue';
 import dayjs from 'dayjs';
 import weekday from 'dayjs/plugin/weekday';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import isToday from 'dayjs/plugin/isToday';
 dayjs.extend(weekday);
+dayjs.extend(isSameOrBefore);
+dayjs.extend(isToday);
 interface Event {
   id: number;
 
@@ -76,13 +78,7 @@ export default defineComponent({
     const selectedDate = ref(dayjs().locale('ru'));
 
     const time = ref<string | null>(null);
-    const timeList = ref<string[]>([
-      '10:00',
-      '11:00',
-      '12:00',
-      '14:00',
-      '15:00',
-    ]);
+
     const today = computed(() => dayjs().format('YYYY-MM-DD'));
     const month = computed(() => Number(selectedDate.value.format('M')));
     const year = computed(() => Number(selectedDate.value.format('YYYY')));
@@ -138,11 +134,12 @@ export default defineComponent({
     const isDate = (date: string) => {
       if (props.availableDays && props.availableDays.length > 0) {
         return !props.availableDays.some((item) => {
-          return (
-            !dayjs(item.date).isBefore(dayjs()) &&
+          if (
             dayjs(dayjs(item.date).format('YYYY-MM-DD')).unix() ===
-              dayjs(date).unix()
-          );
+            dayjs(date).unix()
+          ) {
+            return dayjs(date).isToday() || dayjs().isSameOrBefore(dayjs(date));
+          }
         });
       }
       return true;
@@ -156,9 +153,6 @@ export default defineComponent({
     };
     onMounted(() => {
       emit('current', selectedDate.value);
-      // console.log(dayjs().month(0).daysInMonth());
-      // console.log(dayjs(selectedDate.value).daysInMonth());
-      // console.log(dayjs().locale("ru"));
     });
     watch(selectedDate, (val) => {
       emit('current', val);
@@ -181,7 +175,6 @@ export default defineComponent({
       selectDate,
       chooseDay,
       time,
-      timeList,
     };
   },
 });

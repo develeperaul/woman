@@ -10,7 +10,7 @@
       :key="i"
     >
       <div class="stories-group-slider__item-body tw-container tw-pt-10">
-        <div>
+        <div class="stories-group-slider__item-content">
           <div class="tw-text-h2 tw-font-semibold tw-mb-5">
             {{ n.title }}
           </div>
@@ -22,8 +22,16 @@
           :src="n.image.url"
           alt=""
           class="tw-rounded-2xl tw-h-[235px] tw-w-full"
-          fit
+          fit="cover"
         />
+        <div v-if="n.action" class="tw-container tw-mb-6">
+          <base-button
+            theme="gradient"
+            @click="$router.push({ name: 'to-record' })"
+          >
+            Записаться
+          </base-button>
+        </div>
       </div>
     </swiper-slide>
 
@@ -76,7 +84,8 @@ const swiperOptions = ref({
       width: 100%;
       height: 100%;
       align-items: center;
-
+    }
+    &-content {
       font-size: 25px;
     }
   }
@@ -112,7 +121,7 @@ const swiperOptions = ref({
 
       span {
         position: absolute;
-        background-color: theme('colors.primaryto');
+        background-color: theme('colors.storyes_line');
         left: 0;
         top: 0;
         width: 100%;

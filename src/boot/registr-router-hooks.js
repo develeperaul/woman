@@ -7,6 +7,13 @@ export default ({ router, store }) => {
   //     store.commit("auth/setAuth", true);
   //   }
   router.beforeEach((to, from, next) => {
+    if (window.localStorage.getItem('first') !== null && to.name === 'first') {
+      if (getAccessToken()) return next({ name: 'home' });
+      else {
+        next({ name: 'auth' });
+      }
+    }
+
     if (to.meta && to.meta.auth) {
       if (getAccessToken()) return next();
       else {

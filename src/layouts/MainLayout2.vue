@@ -1,11 +1,7 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header v-if="$route.meta?.title">
-      <Header />
-    </q-header>
-
-    <q-page-container>
-      <router-view class="tw-pt-10" />
+  <q-layout view="lhh Lpr lFf">
+    <q-page-container :class="{ 'bg-head': !data.other }">
+      <router-view />
     </q-page-container>
     <q-footer class="tw-bg-transparent" v-if="$route.meta?.footer">
       <Footer />
@@ -14,6 +10,6 @@
 </template>
 
 <script setup lang="ts">
-import Header from 'src/components/Layout/Header.vue';
 import Footer from 'src/components/Layout/Footer.vue';
+import data from '/public/data.json';
 </script>

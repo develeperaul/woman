@@ -6,6 +6,7 @@
         <div>
           <base-input
             name="phone"
+            type="tel"
             v-model="phone"
             maska="+7 (###)-###-##-##"
             label="Номер телефона "

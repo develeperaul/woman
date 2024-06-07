@@ -13,19 +13,19 @@ const props = withDefaults(
 </script>
 <style lang="scss" scoped>
 .btn {
-  @apply tw-px-2.5 tw-py-4 tw-font-semibold tw-text-white tw-rounded-2xl tw-w-full;
+  @apply tw-px-2.5 tw-py-4 tw-font-semibold tw-text-btn_text tw-rounded-2xl tw-w-full;
   &_bg {
-    @apply tw-bg-primaryto;
+    @apply tw-bg-btn_modal;
   }
   &_gradient {
     background: linear-gradient(
       180deg,
-      theme('colors.primary') 0%,
-      theme('colors.primaryto') 100%
+      theme('colors.btns') 0%,
+      theme('colors.btnsto') 100%
     );
   }
   &_border {
-    @apply tw-bg-transparent tw-text-title tw-border tw-border-primaryto;
+    @apply tw-bg-transparent tw-text-title tw-border tw-border-btn_modal;
   }
 }
 </style>

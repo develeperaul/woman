@@ -15,7 +15,7 @@ export default defineComponent({
   border: 1px solid #e2e2e2;
   transition: all 0.3s ease-in-out;
   &.active {
-    @apply tw-bg-filter tw-border-filter tw-text-white;
+    @apply tw-bg-category tw-border-category tw-text-white;
   }
 }
 </style>

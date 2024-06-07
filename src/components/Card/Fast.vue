@@ -54,7 +54,7 @@
             :class="[
               index === 0 ? 'tw-ml-4' : '',
               selectedDay && selectedDay === n
-                ? 'tw-bg-filter  tw-text-white  tw-shadow-btn'
+                ? 'tw-bg-category  tw-text-white  tw-shadow-btn'
                 : 'tw-bg-whitedarken',
             ]"
             @click="selectDate(n)"
@@ -78,7 +78,7 @@
             :class="[
               index === 0 ? 'tw-ml-4' : '',
               selectedTime === n.id
-                ? ' tw-border-primaryto tw-bg-second'
+                ? ' tw-border-category tw-bg-second'
                 : 'tw-border-gray3',
             ]"
             @click="selectedTime = n.id"

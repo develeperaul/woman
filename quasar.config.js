@@ -31,6 +31,8 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: [
       'init',
+      'directives',
+      'amount',
       'registr-router-hooks',
       'global-registration',
       'registr-validators',

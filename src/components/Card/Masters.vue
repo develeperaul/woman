@@ -83,7 +83,8 @@ const props = defineProps<{
 }>();
 const tab = ref<number>(1);
 const tabs = ref<ServiseCategoriesT[]>([]);
-
+const storeMain = mainStore();
+const { serviceCategoryList, salonLocal } = storeToRefs(storeMain);
 // const filterMasters = computed(() => {
 //   return props.masters.filter((item) => {
 //     return item.servicesList.find((service) => service.id === tab.value);
@@ -102,6 +103,20 @@ watchEffect(() => {
   if (props.servises) {
     setTabs();
   }
+  if (serviceCategoryList.value.data && salonLocal.value) {
+    storeMain.getmasters({
+      salon_id: salonLocal.value.id,
+      category_id: serviceCategoryList.value.data[0].id,
+    });
+  }
+});
+
+watch(tab, async (val) => {
+  if (val)
+    storeMain.getmasters({
+      salon_id: salonLocal.value.id,
+      category_id: val,
+    });
 });
 </script>
 <style lang="scss" scoped>
@@ -110,7 +125,7 @@ watchEffect(() => {
   border: 1px solid #e2e2e2;
   transition: all 0.3s ease-in-out;
   &.active {
-    @apply tw-bg-filter tw-border-filter tw-text-white;
+    @apply tw-bg-category tw-border-category tw-text-white;
   }
 }
 </style>

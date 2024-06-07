@@ -13,7 +13,7 @@
         </div>
 
         <div class="tw-flex tw-items-center tw-gap-2.5 tw-mb-5">
-          <base-icon name="calendar" class="tw-w-6 tw-h-6 tw-text-primaryto" />
+          <base-icon name="calendar" class="tw-w-6 tw-h-6 tw-text-icons" />
           <div>
             {{
               dayjs(modelValue.date).locale('ru').format('D MMMM (dd) HH:mm')

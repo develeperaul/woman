@@ -10,11 +10,13 @@ import {
   story,
   upcomingEntry,
   rating,
+  masterCard,
 } from 'src/api/main';
 import { DataVal } from 'src/models';
 import {
   LastJournalRecordT,
   MasterT,
+  MasterCardT,
   SalonT,
   SalonItemT,
   ServiseCategoriesT,
@@ -137,13 +139,13 @@ export default defineStore('main', () => {
     loading: false,
     data: [],
   });
-  console.log(salonLocal.value);
   const getSalons = async () => {
     try {
       const res = (await salons()).data;
       salonList.value.data = res;
       // console.log(salonList.value.data.length);
-
+      salonLocal.value = res[0];
+      console.log(salonLocal.value);
       if (
         salonList.value.data.length === 1 &&
         Object.keys(salonLocal.value).length === 0
@@ -170,6 +172,7 @@ export default defineStore('main', () => {
       salon.value.loading = false;
     }
   };
+
   // end Список Салонов
 
   // start Ближайшая предстоящая запись пользователя
@@ -203,6 +206,25 @@ export default defineStore('main', () => {
     }
   };
   // end рейтинг
+
+  // start карточка мастера
+  const masterCardVal = ref<DataVal<MasterCardT | null>>({
+    loading: false,
+    data: null,
+  });
+  const getMasterCard = async (personnel_id: string) => {
+    try {
+      masterCardVal.value.loading = true;
+      const res = (await masterCard(personnel_id)).data;
+      masterCardVal.value.data = res;
+      return res;
+    } catch (e) {
+      throw e;
+    } finally {
+      masterCardVal.value.loading = false;
+    }
+  };
+  // end карточка мастера
   return {
     storyIndex,
     isStoriesActive,
@@ -230,5 +252,8 @@ export default defineStore('main', () => {
     getUpcomingEntry,
 
     sendRating,
+
+    masterCardVal,
+    getMasterCard,
   };
 });

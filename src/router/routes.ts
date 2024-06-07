@@ -32,11 +32,34 @@ const routes: RouteRecordRaw[] = [
         },
       },
       {
-        path: '/haircuts',
+        path: '/haircuts/:categoryId',
+        name: 'haircuts-category',
+        component: () => import('pages/ToRecord/Haircuts.vue'),
+        props: true,
+        meta: {
+          title: 'Услуги',
+          auth: true,
+        },
+      },
+      {
+        path: '/haircuts/',
         name: 'haircuts',
         component: () => import('pages/ToRecord/Haircuts.vue'),
+        props: true,
         meta: {
-          title: 'Стрижки',
+          title: 'Услуги',
+          auth: true,
+        },
+      },
+
+      {
+        path: '/salons/:typeRecord',
+        name: 'salons',
+        component: () => import('pages/ToRecord/Salons.vue'),
+        props: true,
+        meta: {
+          title: 'Салоны',
+          footer: true,
           auth: true,
         },
       },
@@ -225,6 +248,24 @@ const routes: RouteRecordRaw[] = [
           auth: true,
         },
       },
+      {
+        path: '/master/:id',
+        name: 'master',
+        component: () => import('pages/Master.vue'),
+        props: true,
+        meta: {
+          auth: true,
+        },
+      },
+      // { path: 'debug', component: () => import('pages/Debugs/Icons.vue') },
+      // { path: '', component: () => import('pages/IndexPage.vue') }
+    ],
+  },
+
+  {
+    path: '/',
+    component: () => import('layouts/MainLayout2.vue'),
+    children: [
       {
         path: '/master/:id',
         name: 'master',

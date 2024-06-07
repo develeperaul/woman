@@ -1,10 +1,10 @@
 <template>
   <div
-    class="stories-main-wrapper env-t env-b"
+    class="stories-main-wrapper"
     v-if="isStoriesActive"
     @click="closeStories($event)"
   >
-    <div ref="wrapperContent" class="stories-main-wrapper__content">
+    <div ref="wrapperContent" class="stories-main-wrapper__content env-t env-b">
       <StoriesMainSlider ref="storiesMainSlider" />
     </div>
   </div>

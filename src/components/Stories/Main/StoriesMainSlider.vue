@@ -47,7 +47,7 @@ import 'swiper/css';
 const stories = useStoriesStore();
 const mainSlider = ref(null);
 const groupSlider = ref(null);
-const autoplayDelay = ref(5000);
+const autoplayDelay = ref(50000);
 const speed = ref(100);
 const isPaused = ref(false);
 let interval = ref(null);

@@ -1,5 +1,5 @@
 <template>
-  <div class="footer tw-container">
+  <div class="footer tw-container env-b">
     <router-link :to="{ name: 'home' }" v-slot="{ isActive }">
       <div class="nav" :class="{ active: isActive }">
         <base-icon name="home" class="icon tw-w-6 tw-h-6" />
@@ -33,7 +33,7 @@
 <style lang="scss" scoped>
 .footer {
   @apply tw-border-t tw-border-[#DDD] tw-bg-[#F2F2F2];
-  @apply tw-h-[70px] tw-flex tw-justify-between tw-items-center;
+  @apply tw-pt-4 tw-flex tw-justify-between tw-items-center;
 }
 
 .nav {

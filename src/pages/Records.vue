@@ -1,7 +1,6 @@
 <template>
   <q-page class="tw-container">
     <tab-head v-model="tab" :options="tabs" class="tw-mb-6" />
-    {{}}
     <tab-body v-model="tab">
       <tab-content name="upcoming">
         <div v-if="recordList.data.length > 0" class="tw-grid tw-gap-3">

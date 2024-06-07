@@ -8,7 +8,7 @@ export type SalonT = {
   work_from: string;
   work_to: string;
   social_networks: {
-    type: string;
+    type: 'telegram' | 'whatsapp' | 'vkontakte';
     url: string;
   }[];
 };
@@ -23,9 +23,13 @@ export type SalonItemT = {
   work_from: string;
   work_to: string;
   social_networks: {
-    type: string;
+    type: 'telegram' | 'whatsapp' | 'vkontakte';
     url: string;
   }[];
+  salon_coordinate: {
+    latitude: string;
+    longitude: string;
+  };
   images: {
     id: number;
     path: string;
@@ -90,6 +94,53 @@ export type MasterT = {
     height: string;
     url: string;
   } | null;
+};
+
+export type MasterForServiceT = {
+  id: number;
+  name: string;
+  description: string | null;
+  profession: string;
+  price: string;
+  time: string;
+  profile_image: {
+    id: number;
+    path: string;
+    width: string;
+    height: string;
+    url: string;
+  } | null;
+};
+
+export type MasterCardT = {
+  id: number;
+  name: string;
+  description: string | null;
+  profession: string;
+  profile_image: {
+    id: number;
+    path: string;
+    width: string;
+    height: string;
+    url: string;
+  } | null;
+
+  work_images: {
+    id: number;
+    path: string;
+    width: string;
+    height: string;
+    url: string;
+  }[];
+
+  categories: {
+    id: number;
+    name: string;
+    services: {
+      id: number;
+      name: string;
+    }[];
+  }[];
 };
 
 export type LastJournalRecordT = {

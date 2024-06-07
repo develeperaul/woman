@@ -20,13 +20,23 @@
             index === 0 ? 'tw-ml-5.5' : '',
             index === 9 ? 'tw-mr-5.5' : '',
           ]"
+          @click.stop="
+            () => {
+              $router.push({
+                name: 'haircuts',
+                query: {
+                  categoryId: n.id,
+                },
+              });
+            }
+          "
         >
-          <div class="tw-text-t1">{{ n.name }}</div>
           <q-img
             :src="n.image.url"
             alt=""
             class="tw-w-[120px] tw-h-[120px] tw-rounded-xl"
           />
+          <div class="tw-text-t1">{{ n.name }}</div>
         </div>
       </div>
     </template>
@@ -35,8 +45,18 @@
 <script setup lang="ts">
 import { DataVal } from 'src/models';
 import { ServiseCategoriesT } from 'src/models/api/main';
+import { useRouter } from 'vue-router';
 const props = defineProps<{
   servises: DataVal<ServiseCategoriesT[]>;
 }>();
+const { categoryList, serviceList, dataRecord } = storeToRefs(recordsStore());
+const router = useRouter();
+const toMasters = () => {
+  dataRecord.category = currentCategory;
+  dataRecord.service = item;
+  router.push({
+    name: 'masters',
+  });
+};
 </script>
 <style lang="scss" scoped></style>

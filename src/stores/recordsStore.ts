@@ -32,12 +32,14 @@ export default defineStore('records', () => {
     master: MasterT | null;
     day: string | null;
     time: number | null;
+    currentSalon: number | null;
   }>({
     category: null,
     service: null,
     master: null,
     day: null,
     time: null,
+    currentSalon: null,
   });
   const records = ref<Record[]>([]);
 
@@ -47,10 +49,13 @@ export default defineStore('records', () => {
   // start через услуги
   const categoryList = ref<DataVal<CategotyT[]>>({ loading: false, data: [] });
   const getCategories = async () => {
+    const salonId = dataRecord.value.currentSalon
+      ? dataRecord.value.currentSalon
+      : salonLocal.value.id;
     try {
       categoryList.value.loading = true;
 
-      const res = (await categories(salonLocal.value.id)).data;
+      const res = (await categories(salonId)).data;
       categoryList.value.data = res;
       return res;
     } catch (e) {
@@ -62,11 +67,13 @@ export default defineStore('records', () => {
 
   const serviceList = ref<DataVal<ServiceT[]>>({ loading: false, data: [] });
   const getService = async (category_id: number) => {
+    const salonId = dataRecord.value.currentSalon
+      ? dataRecord.value.currentSalon
+      : salonLocal.value.id;
     try {
       serviceList.value.loading = true;
 
-      const res = (await servicesCategory(salonLocal.value.id, category_id))
-        .data;
+      const res = (await servicesCategory(salonId, category_id)).data;
       serviceList.value.data = res;
       return res;
     } catch (e) {
@@ -76,7 +83,10 @@ export default defineStore('records', () => {
     }
   };
 
-  const masterList = ref<DataVal<MasterT[]>>({ loading: false, data: [] });
+  const masterList = ref<DataVal<MasterForServiceT[]>>({
+    loading: false,
+    data: [],
+  });
   const getMastersService = async (service_id: number) => {
     try {
       masterList.value.loading = true;
@@ -94,10 +104,13 @@ export default defineStore('records', () => {
   // end через услуги
 
   const getMasters = async () => {
+    const salonId = dataRecord.value.currentSalon
+      ? dataRecord.value.currentSalon
+      : salonLocal.value.id;
     try {
       masterList.value.loading = true;
 
-      const res = (await mastersSalon(salonLocal.value.id)).data;
+      const res = (await mastersSalon(salonId)).data;
       masterList.value.data = res;
       return res;
     } catch (e) {
@@ -169,10 +182,13 @@ export default defineStore('records', () => {
     work_slot_id: number;
     service_id: number;
   }) => {
+    const salonId = dataRecord.value.currentSalon
+      ? dataRecord.value.currentSalon
+      : salonLocal.value.id;
     try {
       return (
         await recordService({
-          salon_id: salonLocal.value.id,
+          salon_id: salonId,
           ...obj,
         })
       ).data;
@@ -188,6 +204,7 @@ export default defineStore('records', () => {
       master: null,
       day: null,
       time: null,
+      currentSalon: null,
     };
   };
 

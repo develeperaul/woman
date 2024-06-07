@@ -11,7 +11,7 @@
       class="tw-bg-second tw-flex tw-gap-2.5 tw-items-center tw-rounded-10 tw-py-3 tw-px-2.5"
     >
       <div class="tw-text-t1">+{{ bonus }}</div>
-      <base-icon name="briliant" class="tw-w-4.5 tw-h-4.5 tw-text-primaryto" />
+      <base-icon name="briliant" class="tw-w-4.5 tw-h-4.5 tw-text-btns" />
     </div>
   </div>
 </template>

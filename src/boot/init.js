@@ -1,25 +1,26 @@
 import 'virtual:svg-icons-register';
 import { vMaska } from 'maska';
 // import { PushNotifications } from '@capacitor/push-notifications';
-import { FCMTokenSend } from '/src/api/fcm';
+// import { FCMTokenSend } from '/src/api/fcm';
 export default async ({ app }) => {
   app.directive('maska', vMaska);
   // app.use(Maska);
   // console.log(PushNotifications);
+
   // PushNotifications.requestPermissions().then(async (result) => {
   //   console.log(result);
   //   if (result.receive === 'granted') {
   //     await PushNotifications.register();
-  //     await PushNotifications.createChannel({
-  //       id: 'relay',
-  //       name: 'relay',
+  //     // await PushNotifications.createChannel({
+  //     //   id: 'relay',
+  //     //   name: 'relay',
 
-  //       importance: 2,
-  //       visibility: 2,
-  //       lights: true,
+  //     //   importance: 2,
+  //     //   visibility: 2,
+  //     //   lights: true,
 
-  //       vibration: true,
-  //     });
+  //     //   vibration: true,
+  //     // });
   //     // await PushNotifications.deleteChannel({
   //     //   id: "fcm_fallback_notification_channel",
   //     // });
@@ -29,8 +30,9 @@ export default async ({ app }) => {
   //     console.log(await PushNotifications.listChannels());
   //   }
   // });
+
   // await PushNotifications.addListener('registration', async (token) => {
-  //   console.log('initss');
+  //   console.log(token.value);
   //   const storage = window.localStorage;
   //   storage.setItem('fcmToken', token.value);
   //   await FCMTokenSend({ token: token.value });

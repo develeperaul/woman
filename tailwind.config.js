@@ -1,40 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+import color from './public/colors.json';
 module.exports = {
   content: ['./src/**/*.vue'],
   prefix: 'tw-',
   theme: {
     extend: {
-      colors: {
-        primaryto: () => {
-          return '#C131C1';
-        },
-        primary: () => {
-          return '#9C31C1';
-        },
-        primaryto2: () => {
-          return '#C131C1';
-        },
-        primary2: () => {
-          return '#9C31C1';
-        },
-        second: () => {
-          return '#E5D4ED';
-        },
-        filter: () => {
-          return '#635575';
-        },
-        whitedarken: '#F2F2F2',
-        gray: '#686868',
-        gray2: '#616161',
-        gray3: '#E2E2E2',
-        gray4: '#E6E6E6',
-        title: '#0F0F0F',
-        title2: '#1D1128',
-        link: '#007ABE',
-        error: '#EB3B3B',
-        green: '#219653',
-        yellow: '#FFDC23',
-      },
+      colors: color,
       fontSize: {
         t00: ['9px', '120%'],
         t0: ['18px', 'normal'],

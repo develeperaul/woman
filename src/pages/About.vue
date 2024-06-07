@@ -32,8 +32,23 @@
           {{ salon.data.description }}
         </p>
       </div>
-      <div class="card tw-shadow-base tw-w-fit">
-        <a href="#" class="tw-text-link tw-text-t1"> На карте </a>
+      <div
+        v-if="salon.data.salon_coordinate"
+        class="card tw-shadow-base tw-w-fit"
+      >
+        <!-- <a
+          :href="`geo:${salon.data.salon_coordinate.latitude},${salon.data.salon_coordinate.longitude}`"
+          class="tw-text-link tw-text-t1"
+        >
+          На карте
+        </a> -->
+        <!-- // Для ios -->
+        <a
+          :href="`https://maps.apple.com/?ll=${salon.data.salon_coordinate.latitude},${salon.data.salon_coordinate.longitude}`"
+          target="_blank"
+        >
+          На карте</a
+        >
       </div>
     </template>
   </q-page>
@@ -63,7 +78,7 @@ onMounted(() => {
   background: #d3d2d2;
 
   &-active {
-    background: theme('colors.filter');
+    background: theme('colors.category');
   }
 }
 </style>

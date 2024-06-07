@@ -6,7 +6,7 @@
       <base-icon
         name="calendar"
         class="tw-w-5.5 tw-h-5.5"
-        :class="[past ? 'tw-text-primaryto' : 'tw-text-gray2']"
+        :class="[past ? 'tw-text-icons' : 'tw-text-gray2']"
       />
       <div class=" ">{{ date }}</div>
     </div>

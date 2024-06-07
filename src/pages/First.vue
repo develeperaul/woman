@@ -64,13 +64,7 @@
       <base-button v-if="activeInd === 0" theme="gradient" @click="next">
         Дальше
       </base-button>
-      <base-button
-        v-else
-        theme="gradient"
-        @click="$router.push({ name: 'home' })"
-      >
-        Войти
-      </base-button>
+      <base-button v-else theme="gradient" @click="signIn"> Войти </base-button>
     </div>
   </q-page>
 </template>
@@ -78,7 +72,9 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination } from 'swiper/modules';
 import type { Swiper as SW } from 'swiper';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const sw = ref<SW | null>(null);
 const activeInd = ref(0);
 const onSwiper = (swiper: SW) => {
@@ -95,6 +91,10 @@ const next = () => {
     sw.value.slideNext();
     activeInd.value = sw.value.activeIndex;
   }
+};
+const signIn = () => {
+  window.localStorage.setItem('first', '1');
+  router.push({ name: 'home' });
 };
 
 onMounted(() => {
@@ -121,7 +121,7 @@ onMounted(() => {
   background: #e6e5e5;
 }
 .dot-line-active {
-  @apply tw-bg-filter;
+  @apply tw-bg-category;
   width: 20px;
   height: 8px;
   border-radius: 5px;
