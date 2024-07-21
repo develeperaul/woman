@@ -1,5 +1,5 @@
 <template>
-  <q-page class="tw-container tw-grid env-b">
+  <q-page class="tw-container tw-grid env-t env-b">
     <Form @submit="submit" class="tw-grid tw-content-between">
       <div>
         <div class="tw-text-h1 tw-mb-4 tw-font-bold">Данные</div>
@@ -24,7 +24,6 @@
           label="Дата рождения"
           placeholder="ДД-ММ-ГГГГ"
           class="tw-mb-5"
-          :rules="`dateformat:${now}`"
         />
 
         <div>

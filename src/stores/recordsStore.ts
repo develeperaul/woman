@@ -124,6 +124,7 @@ export default defineStore('records', () => {
     try {
       serviceList.value.loading = true;
       const res = (await servicesMater(personnel_id)).data;
+
       serviceList.value.data = res;
     } catch (e) {
       throw e;

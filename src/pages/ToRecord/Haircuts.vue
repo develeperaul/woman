@@ -68,7 +68,7 @@
         </div>
       </template>
     </div>
-    <div class="card">
+    <div class="card" v-if="categoryList.data && dataRecord.master === null">
       <div class="tw-flex tw-justify-between tw-items-center tw-mb-3">
         <div class="title">Наши работы</div>
         <base-icon name="forward" class="tw-text-[#C7C7C7] tw-w-6 tw-h-6" />
@@ -122,6 +122,7 @@ onMounted(async () => {
   if (dataRecord.value.master === null)
     try {
       await recordsStore().getCategories();
+
       if (route.query.categoryId) tab.value = +route.query.categoryId;
       else tab.value = categoryList.value.data[0].id;
       await recordsStore().getService(tab.value);

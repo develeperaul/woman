@@ -1,5 +1,5 @@
 <template>
-  <q-page class="tw-container env-b tw-content-center">
+  <q-page class="tw-container env-t env-b tw-content-center">
     <div class="tw-grid tw-content-between">
       <template v-if="!isTokenNull">
         <div class="tw-mb-[70px]">

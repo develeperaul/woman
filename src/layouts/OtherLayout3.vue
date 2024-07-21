@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf" class="env-t env-b">
     <q-header v-if="$route.meta?.title">
       <Header />
     </q-header>

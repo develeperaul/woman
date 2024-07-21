@@ -44,6 +44,13 @@ export type StoriesT = {
   title: string;
   published_at: string;
   unpublished_at: string;
+  context_image: {
+    id: number;
+    path: string;
+    width: string;
+    height: string;
+    url: string;
+  };
   image: {
     id: number;
     path: string;

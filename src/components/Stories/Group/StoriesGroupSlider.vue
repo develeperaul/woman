@@ -8,6 +8,9 @@
       class="stories-group-slider__item"
       v-for="(n, i) in mainStory"
       :key="i"
+      :style="{
+        backgroundImage: `url(${n.context_image?.url})`,
+      }"
     >
       <div class="stories-group-slider__item-body tw-container tw-pt-10">
         <div class="stories-group-slider__item-content">
@@ -79,6 +82,10 @@ const swiperOptions = ref({
     width: 100%;
     height: 100%;
     @apply tw-bg-[#AEC3ED];
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     &-body {
       display: grid;
       width: 100%;

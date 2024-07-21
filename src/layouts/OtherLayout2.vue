@@ -1,11 +1,11 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf" class="">
     <q-header v-if="$route.meta?.title">
       <Header />
     </q-header>
 
     <q-page-container>
-      <router-view class="tw-pt-5" />
+      <router-view class="env-t env-b" />
     </q-page-container>
     <q-footer class="tw-bg-transparent" v-if="$route.meta?.footer">
       <Footer />
