@@ -150,12 +150,11 @@ export default defineComponent({
     };
     const chooseDay = (day) => {
       selectDate.value = day.date;
+
+      emit('current', selectDate.value);
     };
     onMounted(() => {
       emit('current', selectedDate.value);
-    });
-    watch(selectedDate, (val) => {
-      emit('current', val);
     });
     watch(selectDate, () => {
       time.value = null;

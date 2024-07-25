@@ -71,7 +71,7 @@ const selectDate = (e: { day: string; time: number } | null) => {
   }
 };
 const current = (e: Dayjs) => {
-  currentSelectDay.value = e;
+  currentSelectDay.value = dayjs(e);
   getData();
 };
 const record = async () => {
@@ -89,20 +89,23 @@ const record = async () => {
   success.value = true;
 };
 
-const getData = () => {
-  if (dataRecord.value.master && dataRecord.value.service)
-    Promise.allSettled([
-      storeRecords.getAvailableDays({
-        personnel_id: dataRecord.value.master.id as number,
-        year: currentSelectDay.value.format('YYYY'),
-        month: currentSelectDay.value.format('MM'),
-      }),
-      storeRecords.getAvailableTimes({
-        service_id: dataRecord.value.service.id,
-        personnel_id: dataRecord.value.master.id as number,
-        date: currentSelectDay.value.format('YYYY-MM-DD'),
-      }),
-    ]);
+const getData = async () => {
+  if (
+    dataRecord.value.master &&
+    dataRecord.value.service &&
+    currentSelectDay.value
+  ) {
+    await storeRecords.getAvailableDays({
+      personnel_id: dataRecord.value.master.id,
+      year: currentSelectDay.value?.format('YYYY'),
+      month: currentSelectDay.value?.format('MM'),
+    });
+    await storeRecords.getAvailableTimes({
+      service_id: dataRecord.value.service.id,
+      personnel_id: dataRecord.value.master.id,
+      date: currentSelectDay.value?.format('YYYY-MM-DD'),
+    });
+  }
 };
 
 onMounted(() => {
