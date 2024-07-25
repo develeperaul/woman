@@ -8,7 +8,7 @@
       flat
       class="tw-absolute tw-left-0 tw-top-1/2 tw-transform -tw-translate-y-1/2"
     >
-      <base-icon name="back" class="tw-w-6 tw-h-6 tw-text-[#BBB]" />
+      <base-icon name="back" class="tw-w-10 tw-h-10 tw-text-[#BBB]" />
     </q-btn>
     <span class="tw-text-t0 tw-font-bold">
       {{ selectedMonth }}
