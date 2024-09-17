@@ -1,9 +1,10 @@
 {
-  "appId": "ru.vishnya.app",
-  "appName": "Woman",
+  "appId": "ru.vmeste.app",
+  "appName": "Вместе",
   "webDir": "www",
   "server": {
-    "androidScheme": "https"
+    "androidScheme": "http",
+    "url": "http://192.168.1.101:9500"
   },
   "plugins": {
     "SplashScreen": {
