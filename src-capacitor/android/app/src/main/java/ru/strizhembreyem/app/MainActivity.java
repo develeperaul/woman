@@ -1,4 +1,4 @@
-package ru.vishnya.app;
+package ru.strizhembreyem.app;
 
 import com.getcapacitor.BridgeActivity;
 

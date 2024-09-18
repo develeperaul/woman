@@ -1,6 +1,6 @@
 {
-  "appId": "ru.vishnya.app",
-  "appName": "Woman",
+  "appId": "ru.strizhembreyem.app",
+  "appName": "Strizhem breyem",
   "webDir": "www",
   "server": {
     "androidScheme": "https"

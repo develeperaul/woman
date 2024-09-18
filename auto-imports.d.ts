@@ -7,8 +7,11 @@ export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
+  const actionsStore: typeof import('./src/stores/actionsStore')['default']
   const authStore: typeof import('./src/stores/authStore')['default']
+  const bonusStore: typeof import('./src/stores/bonusStore')['default']
   const computed: typeof import('vue')['computed']
+  const cosmeticsStore: typeof import('./src/stores/cosmeticsStore')['default']
   const createApp: typeof import('vue')['createApp']
   const createPinia: typeof import('pinia')['createPinia']
   const customRef: typeof import('vue')['customRef']

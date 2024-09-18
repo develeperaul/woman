@@ -73,7 +73,7 @@ module.exports = configure(function (/* ctx */) {
       // publicPath: '/',
       // analyze: true,
       env: {
-        BASE_URL: 'https://demo.checake.ru',
+        BASE_URL: 'https://server2.checake.ru',
         BASE_URL_PREFIX: '/api',
       },
       // rawDefine: {}
