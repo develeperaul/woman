@@ -1,20 +1,17 @@
 {
-  "appId": "ru.vishnya.app",
-  "appName": "Woman",
+  "appId": "ru.akulenok.app",
+  "appName": "Akulenok",
   "webDir": "www",
   "server": {
-    "androidScheme": "https"
+    "androidScheme": "https",
+    "url": "http://192.168.1.103:9500"
   },
   "plugins": {
     "SplashScreen": {
       "launchAutoHide": false
     },
     "PushNotifications": {
-      "presentationOptions": [
-        "badge",
-        "sound",
-        "alert"
-      ]
+      "presentationOptions": ["badge", "sound", "alert"]
     }
   }
 }

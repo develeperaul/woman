@@ -1,8 +1,8 @@
 {
-  "name": "woman",
+  "name": "akulenok",
   "version": "0.0.1",
-  "description": "Cеть студий красоты",
-  "productName": "Woman",
+  "description": "Бассейн для детей",
+  "productName": "Akulenok",
   "author": "Ralfik <developeraul@gmail.com>",
   "private": true,
   "scripts": {
