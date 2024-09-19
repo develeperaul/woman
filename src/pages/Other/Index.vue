@@ -29,7 +29,7 @@
           </div>
           <base-icon name="forward" class="tw-w-6 tw-h-6 tw-text-[#C7C7C7]" />
         </router-link>
-        <router-link
+        <!-- <router-link
           :to="{ name: 'kosmetika' }"
           class="card tw-flex tw-items-center tw-gap-3 tw-justify-between"
         >
@@ -38,7 +38,7 @@
             <span class="tw-text-t1"> Косметика </span>
           </div>
           <base-icon name="forward" class="tw-w-6 tw-h-6 tw-text-[#C7C7C7]" />
-        </router-link>
+        </router-link> -->
 
         <router-link
           :to="{ name: 'actions' }"

@@ -1,4 +1,4 @@
-package ru.vishnya.app;
+package ru.cleanlinessorder.app;
 
 import com.getcapacitor.BridgeActivity;
 

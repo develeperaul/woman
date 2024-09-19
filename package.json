@@ -1,8 +1,8 @@
 {
-  "name": "woman",
+  "name": "cleanlinessorder",
   "version": "0.0.1",
-  "description": "Cеть студий красоты",
-  "productName": "Woman",
+  "description": "Уборка помещений, клининг под ключ вашего пространства от мытья окон до организации пространства в Уфе",
+  "productName": "Сleanliness order",
   "author": "Ralfik <developeraul@gmail.com>",
   "private": true,
   "scripts": {

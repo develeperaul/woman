@@ -6,7 +6,8 @@
         v-if="!data.other"
         class="tw-mb-5 tw-flex tw-items-center tw-justify-between"
       >
-        <img src="/logo.svg" alt="" width="89" />
+        <div></div>
+        <!-- <img src="/logo.svg" alt="" width="89" /> -->
         <div
           class="tw-text-xs tw-text-white tw-flex tw-items-center"
           @click="openSalonList = true"
