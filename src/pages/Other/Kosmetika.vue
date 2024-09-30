@@ -23,7 +23,10 @@
       />
     </div>
     <template v-else>
-      <div class="tw-grid tw-grid-cols-2 tw-gap-3">
+      <div
+        v-if="productList.data.length > 0"
+        class="tw-grid tw-grid-cols-2 tw-gap-3"
+      >
         <template v-for="p in productList.data">
           <router-link :to="{ name: 'tovar', params: { id: p.id } }" class="">
             <div
@@ -39,6 +42,7 @@
           </router-link>
         </template>
       </div>
+      <div v-else class="tw-text-center">Список пуст</div>
     </template>
   </q-page>
 </template>
