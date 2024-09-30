@@ -8,7 +8,7 @@
         <base-icon name="briliant" class="tw-w-6 tw-h-6 tw-text-icons" />
         <div>
           <div class="tw-text-h2 tw-font-semibold tw-mb-0.5">
-            {{ userBonus.data.bonus }}
+            {{ userBonus.data.bonus ?? 0 }}
           </div>
           <div>бонусов</div>
         </div>
