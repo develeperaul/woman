@@ -8,7 +8,7 @@
       />
     </div>
     <template v-else>
-      <div class="tw-grid tw-gap-3">
+      <div v-if="actionList.data.length > 0" class="tw-grid tw-gap-3">
         <div
           v-for="action in actionList.data"
           class="tw-bg-white tw-rounded-2xl tw-overflow-hidden"
@@ -25,6 +25,7 @@
           </div>
         </div>
       </div>
+      <div v-else class="tw-text-center">Список пуст</div>
     </template>
   </q-page>
 </template>
