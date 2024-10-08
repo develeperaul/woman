@@ -87,7 +87,13 @@
           </button>
         </div>
       </div>
-      <base-button theme="gradient" @click="record"> Записаться </base-button>
+      <base-button
+        v-if="selectedDay && selectedTime"
+        theme="gradient"
+        @click="record"
+      >
+        Записаться
+      </base-button>
     </div>
     <SuccessRecord v-model="message" />
   </div>

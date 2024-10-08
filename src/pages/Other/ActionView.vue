@@ -18,7 +18,9 @@
           {{ action.sub_title }}
         </div>
         <div class="tw-text-gray2 tw-mb-5">
-          Акция действует с {{ action.date_from }} по {{ action.date_to }}
+          Акция действует с
+          {{ dayjs(action.date_from).format('YYYY-MM-DD') }} по
+          {{ dayjs(action.date_to).format('YYYY-MM-DD') }}
         </div>
         <base-button
           theme="gradient"
@@ -32,7 +34,7 @@
 </template>
 <script setup lang="ts">
 import { ActionItemT } from 'src/models/api/action';
-
+import dayjs from 'dayjs';
 const props = defineProps<{
   id: string;
 }>();
