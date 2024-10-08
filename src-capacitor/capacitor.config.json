@@ -1,6 +1,6 @@
 {
-  "appId": "ru.strizhembreyem.app",
-  "appName": "Strizhem breyem",
+  "appId": "ru.gellerthair.app",
+  "appName": "Gellerthair",
   "webDir": "www",
   "server": {
     "androidScheme": "https"

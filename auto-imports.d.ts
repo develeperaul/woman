@@ -11,7 +11,6 @@ declare global {
   const authStore: typeof import('./src/stores/authStore')['default']
   const bonusStore: typeof import('./src/stores/bonusStore')['default']
   const computed: typeof import('vue')['computed']
-  const cosmeticsStore: typeof import('./src/stores/cosmeticsStore')['default']
   const createApp: typeof import('vue')['createApp']
   const createPinia: typeof import('pinia')['createPinia']
   const customRef: typeof import('vue')['customRef']
@@ -92,7 +91,9 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
+    readonly actionsStore: UnwrapRef<typeof import('./src/stores/actionsStore')['default']>
     readonly authStore: UnwrapRef<typeof import('./src/stores/authStore')['default']>
+    readonly bonusStore: UnwrapRef<typeof import('./src/stores/bonusStore')['default']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly createPinia: UnwrapRef<typeof import('pinia')['createPinia']>
@@ -167,7 +168,9 @@ declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
+    readonly actionsStore: UnwrapRef<typeof import('./src/stores/actionsStore')['default']>
     readonly authStore: UnwrapRef<typeof import('./src/stores/authStore')['default']>
+    readonly bonusStore: UnwrapRef<typeof import('./src/stores/bonusStore')['default']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly createPinia: UnwrapRef<typeof import('pinia')['createPinia']>
