@@ -1,4 +1,4 @@
-package ru.vishnya.app;
+package ru.vmeste.app;
 
 import com.getcapacitor.BridgeActivity;
 

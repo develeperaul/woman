@@ -73,7 +73,7 @@ module.exports = configure(function (/* ctx */) {
       // publicPath: '/',
       // analyze: true,
       env: {
-        BASE_URL: 'https://demo.checake.ru',
+        BASE_URL: 'https://server1.checake.ru',
         BASE_URL_PREFIX: '/api',
       },
       // rawDefine: {}
@@ -227,7 +227,7 @@ module.exports = configure(function (/* ctx */) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'woman',
+        appId: 'Вместе',
       },
     },
 

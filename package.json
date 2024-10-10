@@ -1,8 +1,8 @@
 {
-  "name": "woman",
-  "version": "0.0.1",
-  "description": "Cеть студий красоты",
-  "productName": "Woman",
+  "name": "vmeste",
+  "version": "1.0.5",
+  "description": "Бьюти бар вместе на высоте",
+  "productName": "Вместе",
   "author": "Ralfik <developeraul@gmail.com>",
   "private": true,
   "scripts": {

@@ -60,14 +60,14 @@
         </div>
         <div class="card tw-mb-7.5">
           <div class="title tw-mb-2.5">{{ productItem.data.name }}</div>
-          <div class="tw-text-t1 tw-mb-6">
-            Шампунь подходит для волос, склонных к жирности. Нежная кремовая
-            текстура способствует тщательному очищению кожы головы.
-          </div>
+          <div
+            class="tw-text-t1 tw-mb-6"
+            v-html="productItem.data.description"
+          ></div>
           <div class="tw-text-h2 tw-font-semibold tw-mb-1.5">254 ₽</div>
           <div class="tw-text-t1">В наличии</div>
         </div>
-        <div class="tw-container">
+        <div v-if="productItem.data.showBtn" class="tw-container">
           <base-button theme="gradient" @click="open = true">
             Заказать
           </base-button>

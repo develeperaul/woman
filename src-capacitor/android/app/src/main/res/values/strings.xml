@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Woman</string>
-    <string name="title_activity_main">Woman</string>
-    <string name="package_name">ru.vishnya.app</string>
-    <string name="custom_url_scheme">ru.vishnya.app</string>
+    <string name="app_name">Вместе</string>
+    <string name="title_activity_main">Вместе</string>
+    <string name="package_name">ru.vmeste.app</string>
+    <string name="custom_url_scheme">ru.vmeste.app</string>
 </resources>
