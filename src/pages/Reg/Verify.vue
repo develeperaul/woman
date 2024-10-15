@@ -62,6 +62,7 @@ const call = async () => {
     if (e instanceof TimeoutError) {
       isTokenNull.value = true;
     }
+    throw e;
   }
 
   // if (count.value === 10) clearInterval(timer.value);
