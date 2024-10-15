@@ -8,6 +8,7 @@ export type ProductT = {
   name: string;
   amount: string;
   price: string;
+  description: string;
   image: {
     id: number;
     path: string;
@@ -15,4 +16,5 @@ export type ProductT = {
     height: string;
     url: string;
   }[];
+  showBtn: boolean;
 };

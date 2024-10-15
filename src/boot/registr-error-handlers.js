@@ -31,7 +31,7 @@ export default ({ app, router }) => {
         console.log(403);
         Notify.create({
           type: 'negative',
-          message: 'Test 403',
+          message: 'Доступ запрещен',
           position: 'top',
         });
         return;
@@ -39,7 +39,7 @@ export default ({ app, router }) => {
         console.log(404);
         Notify.create({
           type: 'negative',
-          message: 'Test 404',
+          message: 'Ресурс не найден',
           position: 'top',
         });
         return;
@@ -47,7 +47,7 @@ export default ({ app, router }) => {
         console.log(429);
         Notify.create({
           type: 'negative',
-          message: 'Test 429',
+          message: 'Что-то пошло не так! Попробуйте позже.',
           position: 'top',
         });
         return;
