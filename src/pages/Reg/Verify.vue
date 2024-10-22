@@ -7,7 +7,7 @@
             <span class=""> Просим вас позвонить на номер </span>
             <br />
             <br />
-            <a @click="call" href="tel:+78005558607" class="tw-text-icons">
+            <a  href="tel:+78005558607" class="tw-text-icons">
               8 (800) 555-86-07
             </a>
           </div>
