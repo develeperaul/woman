@@ -77,6 +77,7 @@ const submit = async () => {
   console.log({ name: name.value, birthday: date.value });
 
   profileStore().editUser({ name: name.value, birthday: date.value });
+  window.localStorage.removeItem('phone');
   router.push({ name: 'home' });
 };
 </script>
