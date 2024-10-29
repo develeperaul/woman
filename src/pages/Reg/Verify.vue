@@ -7,7 +7,7 @@
             <span class=""> Просим вас позвонить на номер </span>
             <br />
             <br />
-            <a  href="tel:+78005558607" class="tw-text-icons">
+            <a href="tel:+78005558607" class="tw-text-icons">
               8 (800) 555-86-07
             </a>
           </div>
@@ -49,7 +49,7 @@ const rezet = () => {
 const call = async () => {
   try {
     const res = await authStore().login();
-    if (res.token) {
+    if (res && res.token) {
       Promise.allSettled([
         await profileStore().getProfile(),
         await mainStore().getSalons(),

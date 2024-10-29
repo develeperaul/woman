@@ -27,6 +27,7 @@ import { useRouter } from 'vue-router';
 const { phone } = storeToRefs(authStore());
 const router = useRouter();
 const submit = () => {
+  window.localStorage.setItem('phone', JSON.stringify(phone.value));
   router.push({ name: 'verify' });
 };
 </script>
