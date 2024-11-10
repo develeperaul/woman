@@ -7,7 +7,7 @@
             <span class=""> Просим вас позвонить на номер </span>
             <br />
             <br />
-            <a href="tel:+78005558607" class="tw-text-icons">
+            <a href="tel:+78005558607"  class="tw-text-icons">
               8 (800) 555-86-07
             </a>
           </div>
@@ -15,10 +15,14 @@
             После успешного звонка, вы будете авторизованы
           </div>
         </div>
-
-        <base-button class="tw-mb-5" @click="back" theme="gradient">
-          Назад
-        </base-button>
+        <div class="tw-grid tw-gap-2">
+          <base-button class="" @click="call(1)" theme="gradient">
+            Я позвонил
+          </base-button>
+          <base-button class="tw-mb-5" @click="back" theme="gradient">
+            Назад
+          </base-button>
+        </div>
       </template>
       <template v-else>
         <div class="tw-grid tw-place-content-center tw-gap-4">
@@ -44,16 +48,20 @@ const back = () => {
 };
 const rezet = () => {
   isTokenNull.value = false;
-  call();
+  // call();
 };
+const localPhone = window.localStorage.getItem('phone');
+const isShowBtn = ref(false);
 const call = async () => {
   try {
     const res = await authStore().login();
     if (res && res.token) {
+      console.log('www');
       Promise.allSettled([
         await profileStore().getProfile(),
         await mainStore().getSalons(),
       ]);
+
       router.push({ name: 'data' });
     } else {
       isTokenNull.value = true;
@@ -79,7 +87,7 @@ const call = async () => {
   //   }
   // }, 5000);
 };
-onMounted(() => call());
+// onMounted(async() => call());
 const submit = () => {
   router.push({ name: 'data' });
 };

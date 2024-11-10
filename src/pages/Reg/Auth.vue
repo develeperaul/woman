@@ -23,12 +23,20 @@
 </template>
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-
+import { auth } from 'src/api/auth';
 const { phone } = storeToRefs(authStore());
 const router = useRouter();
-const submit = () => {
+const submit = async () => {
   window.localStorage.setItem('phone', JSON.stringify(phone.value));
   router.push({ name: 'verify' });
+  try {
+
+    await auth(`+7${phone.value}`)
+  } catch (e) {
+    console.log(e);
+
+  }
+  // await authStore().login(0);
 };
 </script>
 <style lang="scss" scoped></style>
