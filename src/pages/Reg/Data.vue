@@ -80,5 +80,6 @@ const submit = async () => {
   window.localStorage.removeItem('phone');
   router.push({ name: 'home' });
 };
+onMounted(() => window.localStorage.removeItem('countAuth'));
 </script>
 <style lang="scss" scoped></style>
