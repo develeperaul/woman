@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import color from './public/colors.json';
+import color from './public/colors3.json';
 module.exports = {
   content: ['./src/**/*.vue'],
   prefix: 'tw-',

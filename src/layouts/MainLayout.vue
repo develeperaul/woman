@@ -3,7 +3,7 @@
     <q-header v-if="data.other" class="bg-head2 env-t tw-pb-5">
       <div class="tw-container">
         <div class="">
-          <img src="/logo.svg" alt="" width="89" />
+          <!-- <img src="/logo.svg" alt="" width="89" /> -->
         </div>
       </div>
     </q-header>
